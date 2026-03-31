@@ -555,6 +555,7 @@ tbody td { padding: 10px 14px; vertical-align: middle; }
   <button class="tab-btn active" data-tab="home">🏠 Главная</button>
   <button class="tab-btn" data-tab="pipeline">📋 Лиды &amp; Проекты</button>
   <button class="tab-btn" data-tab="money">💰 Деньги</button>
+  <button class="tab-btn" data-tab="metrics">📊 Метрики</button>
 </div>
 
 <!-- ─────────────── TAB: ГЛАВНАЯ ─────────────── -->
@@ -570,6 +571,11 @@ tbody td { padding: 10px 14px; vertical-align: middle; }
 <!-- ─────────────── TAB: ДЕНЬГИ ─────────────── -->
 <div class="tab-pane" id="tab-money">
   <div id="money-content"><div class="loading"><div class="spinner"></div></div></div>
+</div>
+
+<!-- ─────────────── TAB: МЕТРИКИ ─────────────── -->
+<div class="tab-pane" id="tab-metrics">
+  <div id="metrics-content"><div class="loading"><div class="spinner"></div></div></div>
 </div>
 
 <!-- ─────────────── MODAL ─────────────── -->
@@ -642,7 +648,7 @@ let _advanceCache = {}; // stores lead data keyed by index for advanceLead
 let _digestText = '';   // stores digest text for copy button
 let _editEntity = null; // stores entity being edited in modal
 let moneyChart = null;
-let renderPending = { pipeline: true, money: true };
+let renderPending = { pipeline: true, money: true, metrics: true };
 
 // ═══════════════════════════════════════════════
 //  TABS
@@ -656,6 +662,7 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
     document.getElementById('tab-' + id).classList.add('active');
     if (id === 'pipeline' && renderPending.pipeline) { renderPipeline(); renderPending.pipeline = false; }
     if (id === 'money'    && renderPending.money)    { renderMoney();    renderPending.money = false; }
+    if (id === 'metrics'  && renderPending.metrics)  { renderMetrics();  renderPending.metrics = false; }
   });
 });
 
@@ -798,6 +805,8 @@ function afterDataLoaded() {
   else renderPending.pipeline = true;
   if (document.getElementById('tab-money').classList.contains('active')) renderMoney();
   else renderPending.money = true;
+  if (document.getElementById('tab-metrics').classList.contains('active')) renderMetrics();
+  else renderPending.metrics = true;
   document.getElementById('last-upd').textContent = new Date().toLocaleTimeString('ru', {hour:'2-digit', minute:'2-digit'});
 }
 
@@ -959,11 +968,34 @@ function renderHome() {
     <p class="sec">⚡ Сделать сейчас</p>
     <div class="today-list">${todayHTML}</div>
 
+    ${buildHomeMetrics()}
+
     <p class="sec">Воронка (лиды)</p>
     <div class="funnel-scroll">
       <div class="funnel" id="home-funnel">${buildMiniHomeFunnel(activeLeads)}</div>
     </div>
   `;
+}
+
+function buildHomeMetrics() {
+  const metrics = S._metrics;
+  if (!metrics || metrics.length === 0) return '';
+  const top = metrics.slice(0, 3);
+  const cards = top.map(m => {
+    const pct = m.plan > 0 ? Math.min(100, Math.round(m.fact/m.plan*100)) : 0;
+    const barColor = pct>=100?'var(--accent3)':pct>=60?'var(--accent)':pct>=30?'var(--gold)':'var(--accent2)';
+    return `<div class="kpi" style="cursor:pointer" onclick="document.querySelector('[data-tab=metrics]').click()">
+      <div class="kpi-lbl">${PERIOD_LABELS[m.period]||m.period} · ${m.name}</div>
+      <div style="display:flex;align-items:baseline;gap:8px;margin:4px 0">
+        <div class="kpi-val" style="color:${barColor}">${m.fact}</div>
+        <div style="font-size:12px;color:var(--muted)">/ ${m.plan}</div>
+      </div>
+      <div style="background:var(--bg3);border-radius:10px;height:5px;overflow:hidden">
+        <div style="width:${pct}%;height:100%;background:${barColor};border-radius:10px"></div>
+      </div>
+    </div>`;
+  }).join('');
+  return `<p class="sec">📊 Метрики</p><div style="display:grid;grid-template-columns:repeat(${Math.min(top.length,3)},1fr);gap:10px">${cards}</div>`;
 }
 
 function openGoalsModal() {
@@ -1310,7 +1342,18 @@ function clearFunnelFilter() { S.funnelFilter=null; renderPipeline(); }
 //  MONEY
 // ═══════════════════════════════════════════════
 function renderMoney() {
+  const allM = getAllMoney();
+  const incTx = allM.filter(r => r['Тип']==='Доход' && parseFloat(r['Сумма']) > 0);
+  const avgCheck = incTx.length ? Math.round(incTx.reduce((s,r)=>s+(parseFloat(r['Сумма'])||0),0) / incTx.length) : 0;
+  const maxCheck = incTx.length ? Math.max(...incTx.map(r=>parseFloat(r['Сумма'])||0)) : 0;
+  const minCheck = incTx.length ? Math.min(...incTx.map(r=>parseFloat(r['Сумма'])||0)) : 0;
+
   document.getElementById('money-content').innerHTML = `
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px">
+      <div class="kpi"><div class="kpi-lbl">Средний чек</div><div class="kpi-val c-accent">${fmtRub(avgCheck)}</div><div class="kpi-sub">${incTx.length} транзакций</div></div>
+      <div class="kpi"><div class="kpi-lbl">Максимальный</div><div class="kpi-val c-green">${fmtRub(maxCheck)}</div><div class="kpi-sub">за всё время</div></div>
+      <div class="kpi"><div class="kpi-lbl">Минимальный</div><div class="kpi-val">${fmtRub(minCheck)}</div><div class="kpi-sub">за всё время</div></div>
+    </div>
     <p class="sec mt0">Динамика</p>
     <div class="chart-panel">
       <div class="chart-header">
@@ -1769,6 +1812,8 @@ function initGoogleAuth() {
       G_TOKEN = resp.access_token;
       setGoogleAuthed();
       loadAll();
+      // Pre-load metrics in background
+      loadMetrics().then(m => { S._metrics = m; renderHome(); });
     }
   });
 }
@@ -2180,6 +2225,213 @@ if (sessionStorage.getItem('hub_auth') === '1') {
 if (window.innerWidth <= 600) {
   const fab = document.getElementById('fab-add');
   if (fab) fab.style.display = 'block';
+}
+
+// ═══════════════════════════════════════════════
+//  METRICS
+// ═══════════════════════════════════════════════
+const METRICS_SHEET = 'Метрики';
+const PERIOD_LABELS = { week:'Неделя', month:'Месяц', quarter:'Квартал', half:'Полгода', year:'Год' };
+
+async function ensureMetricsSheet() {
+  if (!G_TOKEN) return;
+  try {
+    // Check if sheet exists
+    const meta = await sheetsRequest('GET', '');
+    const exists = meta.sheets?.some(s => s.properties.title === METRICS_SHEET);
+    if (!exists) {
+      await sheetsRequest('POST', ':batchUpdate', {
+        requests: [{ addSheet: { properties: { title: METRICS_SHEET } } }]
+      });
+      // Add headers
+      await sheetsRequest('POST',
+        `/values/${encodeURIComponent(METRICS_SHEET)}!A1:E1:append?valueInputOption=RAW`,
+        { values: [['Название','Период','План','Факт','Заметка']] }
+      );
+    }
+  } catch(e) { console.error('ensureMetricsSheet:', e); }
+}
+
+async function loadMetrics() {
+  if (!G_TOKEN) return [];
+  try {
+    await ensureMetricsSheet();
+    const data = await sheetsRequest('GET', `/values/${encodeURIComponent(METRICS_SHEET)}`);
+    const rows = data.values || [];
+    if (rows.length < 2) return [];
+    return rows.slice(1).filter(r => r[0]).map((r, i) => ({
+      _row: i + 2,
+      name:   r[0] || '',
+      period: r[1] || 'month',
+      plan:   parseFloat(r[2]) || 0,
+      fact:   parseFloat(r[3]) || 0,
+      note:   r[4] || ''
+    }));
+  } catch(e) { console.error('loadMetrics:', e); return []; }
+}
+
+async function saveMetricRow(metric) {
+  const values = [[metric.name, metric.period, metric.plan, metric.fact, metric.note]];
+  if (metric._row) {
+    await sheetsRequest('PUT',
+      `/values/${encodeURIComponent(METRICS_SHEET)}!A${metric._row}:E${metric._row}?valueInputOption=USER_ENTERED`,
+      { values }
+    );
+  } else {
+    await sheetsRequest('POST',
+      `/values/${encodeURIComponent(METRICS_SHEET)}!A1:append?valueInputOption=USER_ENTERED&insertDataOption=INSERT_ROWS`,
+      { values }
+    );
+  }
+}
+
+async function deleteMetricRow(rowNum) {
+  await sheetsRequest('POST', ':batchUpdate', {
+    requests: [{ deleteDimension: {
+      range: { sheetId: await getMetricsSheetId(), dimension: 'ROWS', startIndex: rowNum-1, endIndex: rowNum }
+    }}]
+  });
+}
+
+async function getMetricsSheetId() {
+  const meta = await sheetsRequest('GET', '');
+  const sheet = meta.sheets?.find(s => s.properties.title === METRICS_SHEET);
+  return sheet?.properties?.sheetId || 0;
+}
+
+async function renderMetrics() {
+  document.getElementById('metrics-content').innerHTML = `<div class="loading"><div class="spinner"></div><p style="color:var(--muted);font-size:13px">Загрузка метрик...</p></div>`;
+
+  if (!G_TOKEN) {
+    document.getElementById('metrics-content').innerHTML = `
+      <div class="empty" style="padding:60px">
+        <div class="empty-icon">🔒</div>
+        <p>Войди через Google чтобы работать с метриками</p>
+      </div>`;
+    return;
+  }
+
+  const metrics = await loadMetrics();
+  S._metrics = metrics;
+  _renderMetricsUI(metrics);
+}
+
+function _renderMetricsUI(metrics) {
+  const cards = metrics.map((m, i) => {
+    const pct  = m.plan > 0 ? Math.min(100, Math.round(m.fact / m.plan * 100)) : 0;
+    const diff = m.fact - m.plan;
+    const dSign = diff >= 0 ? '+' : '';
+    const barColor = pct >= 100 ? 'var(--accent3)' : pct >= 60 ? 'var(--accent)' : pct >= 30 ? 'var(--gold)' : 'var(--accent2)';
+    return `
+      <div class="kpi" style="padding:16px;position:relative">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px">
+          <div>
+            <div class="kpi-lbl">${PERIOD_LABELS[m.period]||m.period}</div>
+            <div style="font-size:15px;font-weight:700;margin-top:2px">${m.name}</div>
+          </div>
+          <div style="display:flex;gap:6px">
+            <button onclick="openMetricModal(${i})" style="background:var(--bg3);border:1px solid var(--border);border-radius:5px;padding:3px 8px;font-size:11px;cursor:pointer">✏️</button>
+            <button onclick="deleteMetric(${i})" style="background:var(--accent2-bg);border:1px solid rgba(217,79,79,.2);color:var(--accent2);border-radius:5px;padding:3px 8px;font-size:11px;cursor:pointer">🗑</button>
+          </div>
+        </div>
+        <div style="display:flex;gap:16px;margin-bottom:10px;flex-wrap:wrap">
+          <div><div style="font-size:9px;font-weight:700;color:var(--muted);letter-spacing:.5px;text-transform:uppercase;margin-bottom:2px">Факт</div><div style="font-size:24px;font-weight:800;letter-spacing:-1px;color:${barColor}">${m.fact}</div></div>
+          <div><div style="font-size:9px;font-weight:700;color:var(--muted);letter-spacing:.5px;text-transform:uppercase;margin-bottom:2px">План</div><div style="font-size:24px;font-weight:800;letter-spacing:-1px">${m.plan}</div></div>
+          <div><div style="font-size:9px;font-weight:700;color:var(--muted);letter-spacing:.5px;text-transform:uppercase;margin-bottom:2px">Разница</div><div style="font-size:24px;font-weight:800;letter-spacing:-1px;color:${diff>=0?'var(--accent3)':'var(--accent2)'}">${dSign}${diff}</div></div>
+          <div style="margin-left:auto;text-align:right"><div style="font-size:9px;font-weight:700;color:var(--muted);letter-spacing:.5px;text-transform:uppercase;margin-bottom:2px">Выполнение</div><div style="font-size:24px;font-weight:800;letter-spacing:-1px;color:${barColor}">${pct}%</div></div>
+        </div>
+        <div style="background:var(--bg3);border-radius:20px;height:8px;overflow:hidden">
+          <div style="width:${pct}%;height:100%;background:${barColor};border-radius:20px;transition:width .5s ease"></div>
+        </div>
+        ${m.note ? `<div style="margin-top:8px;font-size:11px;color:var(--muted)">${m.note}</div>` : ''}
+      </div>`;
+  }).join('');
+
+  document.getElementById('metrics-content').innerHTML = `
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+      <div>
+        <div style="font-size:18px;font-weight:800">📊 Метрики</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:2px">Данные синхронизируются с Google Sheets → лист «Метрики»</div>
+      </div>
+      <button class="btn-add-tx" onclick="openMetricModal(-1)" style="position:static;box-shadow:none;border-radius:8px;padding:8px 16px;font-size:13px">+ Метрика</button>
+    </div>
+
+    ${metrics.length === 0
+      ? `<div class="empty" style="padding:60px"><div class="empty-icon">📈</div><p>Нет метрик — нажми «+ Метрика» чтобы добавить первую</p></div>`
+      : `<div style="display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr))">${cards}</div>`
+    }
+  `;
+}
+
+function openMetricModal(idx) {
+  const m = idx >= 0 ? (S._metrics||[])[idx] : null;
+  document.getElementById('modal-body').innerHTML = `
+    <div class="modal-header">
+      <div class="modal-title">${m ? 'Редактировать метрику' : '+ Новая метрика'}</div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="form-field">
+      <label class="form-label">Название метрики</label>
+      <input class="form-input" id="m-name" value="${m?m.name:''}" placeholder="Звонков, КП отправлено...">
+    </div>
+    <div class="form-row">
+      <div class="form-field">
+        <label class="form-label">Период</label>
+        <select class="form-select" id="m-period">
+          ${Object.entries(PERIOD_LABELS).map(([v,l]) => `<option value="${v}" ${(m?.period||'month')===v?'selected':''}>${l}</option>`).join('')}
+        </select>
+      </div>
+      <div class="form-field">
+        <label class="form-label">План</label>
+        <input class="form-input" type="number" id="m-plan" value="${m?m.plan:''}" placeholder="10">
+      </div>
+    </div>
+    <div class="form-field">
+      <label class="form-label">Факт</label>
+      <input class="form-input" type="number" id="m-fact" value="${m?m.fact:''}" placeholder="0">
+    </div>
+    <div class="form-field">
+      <label class="form-label">Заметка (опционально)</label>
+      <input class="form-input" id="m-note" value="${m?m.note:''}" placeholder="Комментарий">
+    </div>
+    <button class="btn-submit" id="m-save-btn" onclick="saveMetric(${idx})">💾 Сохранить</button>
+  `;
+  document.getElementById('modal-overlay').classList.add('open');
+}
+
+async function saveMetric(idx) {
+  const name = document.getElementById('m-name').value.trim();
+  if (!name) { alert('Введи название'); return; }
+  const btn = document.getElementById('m-save-btn');
+  btn.textContent = '⏳'; btn.disabled = true;
+
+  const metric = {
+    _row:   idx >= 0 ? (S._metrics[idx]?._row) : null,
+    name,
+    period: document.getElementById('m-period').value,
+    plan:   parseFloat(document.getElementById('m-plan').value) || 0,
+    fact:   parseFloat(document.getElementById('m-fact').value) || 0,
+    note:   document.getElementById('m-note').value.trim()
+  };
+
+  try {
+    await saveMetricRow(metric);
+    closeModal();
+    renderMetrics();
+    renderPending.metrics = false;
+  } catch(e) {
+    alert('Ошибка: ' + e.message);
+    btn.textContent = '💾 Сохранить'; btn.disabled = false;
+  }
+}
+
+async function deleteMetric(idx) {
+  const m = (S._metrics||[])[idx];
+  if (!m || !confirm(`Удалить метрику «${m.name}»?`)) return;
+  try {
+    if (m._row) await deleteMetricRow(m._row);
+    renderMetrics();
+  } catch(e) { alert('Ошибка: ' + e.message); }
 }
 
 // ═══════════════════════════════════════════════
