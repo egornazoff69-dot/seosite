@@ -710,6 +710,15 @@ function fmtDate(s) {
 
 function today0() { const d = new Date(); d.setHours(0,0,0,0); return d; }
 
+// Returns YYYY-MM-DD in LOCAL timezone (not UTC)
+function localDateStr(date) {
+  const d = date || new Date();
+  const y = d.getFullYear();
+  const m = String(d.getMonth()+1).padStart(2,'0');
+  const day = String(d.getDate()).padStart(2,'0');
+  return `${y}-${m}-${day}`;
+}
+
 function daysDiff(dateStr) {
   if (!dateStr) return null;
   const d = new Date(dateStr); d.setHours(0,0,0,0);
@@ -822,9 +831,9 @@ function loadDemo() {
 // ═══════════════════════════════════════════════
 function renderHome() {
   const tod = today0();
-  const todStr = tod.toISOString().slice(0,10);
+  const todStr = localDateStr(tod);
   const thisMon = todStr.slice(0,7);
-  const lastMon = (() => { const d = new Date(tod); d.setMonth(d.getMonth()-1); return d.toISOString().slice(0,7); })();
+  const lastMon = (() => { const d = new Date(tod); d.setMonth(d.getMonth()-1); return localDateStr(d).slice(0,7); })();
 
   let incThis=0, incLast=0, expThis=0;
 
@@ -1262,8 +1271,8 @@ async function _applyEntityUpdate(original, updated) {
 function openWeekDigest() {
   const tod = today0();
   const weekAgo = new Date(tod); weekAgo.setDate(weekAgo.getDate() - 7);
-  const weekStr  = weekAgo.toISOString().slice(0,10);
-  const todStr   = tod.toISOString().slice(0,10);
+  const weekStr  = localDateStr(weekAgo);
+  const todStr   = localDateStr(tod);
 
   // Money this week
   const weekMoney = getAllMoney().filter(r => r['Дата'] >= weekStr && r['Дата'] <= todStr);
@@ -1283,7 +1292,7 @@ function openWeekDigest() {
   });
 
   // Upcoming next week
-  const nextWeekStr = new Date(tod.getTime() + 7*86400000).toISOString().slice(0,10);
+  const d7 = new Date(tod); d7.setDate(d7.getDate()+7); const nextWeekStr = localDateStr(d7);
   const upcoming = S.entities.filter(r => {
     const d = r['Дата следующего шага'];
     return d && d >= todStr && d <= nextWeekStr && !CLOSED_LEAD.includes(r['Статус']) && !CLOSED_PROJ.includes(r['Статус']);
@@ -1681,7 +1690,7 @@ function getTgToken() {
 
 function buildTelegramText() {
   const tod = today0();
-  const todStr = tod.toISOString().slice(0,10);
+  const todStr = localDateStr(tod);
   const thisMon = todStr.slice(0,7);
 
   const d1 = new Date(tod); d1.setDate(d1.getDate()+1); const tom = d1.toISOString().slice(0,10);
