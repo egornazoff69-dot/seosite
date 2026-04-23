@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Кейсы — Егор Назаров</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #F7F6F2;
+    --bg2: #EEECEA;
+    --ink: #1A1A18;
+    --ink2: #555550;
+    --accent: #D4611A;
+    --accent2: #F0813A;
+    --line: #D8D6D0;
+    --card: #FFFFFF;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 64px 24px 48px;
+    max-width: 760px;
+    margin: 0 auto;
+    border-bottom: 1px solid var(--line);
+  }
+  .hero-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 20px;
+  }
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 8vw, 64px); font-weight: 900;
+    line-height: 1.05; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 16px;
+  }
+  .hero-sub {
+    font-size: 16px; color: var(--ink2); font-weight: 300;
+    max-width: 460px; margin-bottom: 40px;
+  }
+  .hero-stats { display: flex; gap: 40px; flex-wrap: wrap; }
+  .stat-num {
+    font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700;
+    color: var(--accent); line-height: 1; display: block;
+  }
+  .stat-txt { font-size: 12px; color: var(--ink2); font-weight: 400; margin-top: 4px; display: block; }
+
+  /* FEATURED */
+  .featured {
+    max-width: 760px; margin: 0 auto;
+    padding: 48px 24px; border-bottom: 1px solid var(--line);
+  }
+  .section-label {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--ink2); margin-bottom: 24px;
+  }
+  .featured-card {
+    background: var(--ink); border-radius: 16px; padding: 40px;
+    color: white; position: relative; overflow: hidden;
+  }
+  .featured-card::before {
+    content: ''; position: absolute; top: -60px; right: -60px;
+    width: 240px; height: 240px; background: var(--accent); opacity: 0.08; border-radius: 50%;
+  }
+  .featured-card::after {
+    content: ''; position: absolute; bottom: -80px; left: 60px;
+    width: 180px; height: 180px; background: var(--accent2); opacity: 0.06; border-radius: 50%;
+  }
+  .featured-niche {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--accent2); margin-bottom: 4px;
+  }
+  .featured-company {
+    font-size: 13px; color: rgba(255,255,255,0.5); margin-bottom: 14px; font-weight: 400;
+  }
+  .featured-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 5vw, 36px); font-weight: 700;
+    line-height: 1.2; margin-bottom: 28px; position: relative; z-index: 1;
+  }
+
+  /* SLIDER */
+  .slider-wrap {
+    position: relative; border-radius: 12px; overflow: hidden;
+    margin-bottom: 24px; z-index: 1; user-select: none;
+  }
+  .slider-track {
+    display: flex;
+    transition: transform 0.45s cubic-bezier(0.4,0,0.2,1);
+    will-change: transform;
+  }
+  .slider-track img {
+    width: 100%; flex-shrink: 0; height: 220px;
+    object-fit: cover; display: block;
+  }
+  .slider-btn {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    background: rgba(0,0,0,0.35); backdrop-filter: blur(4px);
+    border: none; color: white; width: 36px; height: 36px;
+    border-radius: 50%; cursor: pointer; font-size: 15px;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s; z-index: 2;
+  }
+  .slider-btn:hover { background: rgba(0,0,0,0.6); }
+  .slider-btn.prev { left: 12px; }
+  .slider-btn.next { right: 12px; }
+  .slider-dots {
+    position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 6px; z-index: 2;
+  }
+  .slider-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: rgba(255,255,255,0.4); cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .slider-dot.active { background: white; transform: scale(1.4); }
+
+  /* BEFORE/AFTER */
+  .before-after {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 16px; margin-bottom: 28px; position: relative; z-index: 1;
+  }
+  .ba-block { background: rgba(255,255,255,0.06); border-radius: 10px; padding: 20px; }
+  .ba-block.after {
+    background: rgba(212, 97, 26, 0.18); border: 1px solid rgba(212, 97, 26, 0.3);
+  }
+  .ba-label {
+    font-size: 9px; font-weight: 600; letter-spacing: 0.14em;
+    text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 8px;
+  }
+  .ba-block.after .ba-label { color: var(--accent2); }
+  .ba-metric {
+    font-family: 'Playfair Display', serif; font-size: 28px;
+    font-weight: 700; line-height: 1; margin-bottom: 4px;
+  }
+  .ba-desc { font-size: 11px; color: rgba(255,255,255,0.55); }
+  .featured-tags { display: flex; flex-wrap: wrap; gap: 8px; position: relative; z-index: 1; }
+  .tag {
+    font-size: 11px; font-weight: 500; padding: 5px 12px;
+    border-radius: 100px; background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7);
+  }
+
+  /* CASES GRID */
+  .cases-section { max-width: 760px; margin: 0 auto; padding: 48px 24px 80px; }
+  .cases-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px; }
+
+  @media (max-width: 560px) {
+    .cases-grid { grid-template-columns: 1fr; }
+    .slider-track img { height: 180px; }
+    .featured-card { padding: 28px 24px; }
+  }
+
+  .case-card {
+    background: var(--card); border-radius: 14px; padding: 24px;
+    border: 1px solid var(--line); transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .case-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.08); transform: translateY(-2px); }
+  .case-card.wide { grid-column: 1 / -1; }
+
+  .case-niche {
+    font-size: 9px; font-weight: 600; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 2px;
+  }
+  .case-company { font-size: 12px; color: var(--ink2); font-weight: 500; margin-bottom: 10px; }
+  .case-headline {
+    font-family: 'Playfair Display', serif; font-size: 20px;
+    font-weight: 700; line-height: 1.2; margin-bottom: 16px; color: var(--ink);
+  }
+  .case-photo {
+    width: 100%; height: 150px; border-radius: 8px;
+    object-fit: cover; margin-bottom: 16px; display: block;
+  }
+  .case-metrics { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+  .metric-row { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+  .metric-key { font-size: 11px; color: var(--ink2); font-weight: 400; }
+  .metric-val { font-size: 13px; font-weight: 600; color: var(--ink); white-space: nowrap; }
+  .metric-val.good { color: var(--accent); }
+  .case-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .case-tag {
+    font-size: 10px; padding: 3px 10px; border-radius: 100px;
+    background: var(--bg2); color: var(--ink2); font-weight: 500;
+  }
+
+  /* CTA */
+  .cta-section { background: var(--ink); padding: 56px 24px; text-align: center; }
+  .cta-inner { max-width: 480px; margin: 0 auto; }
+  .cta-title {
+    font-family: 'Playfair Display', serif; font-size: clamp(26px, 6vw, 40px);
+    font-weight: 700; color: white; margin-bottom: 12px; line-height: 1.2;
+  }
+  .cta-sub { font-size: 15px; color: rgba(255,255,255,0.55); margin-bottom: 32px; font-weight: 300; }
+  .cta-btn {
+    display: inline-block; background: var(--accent); color: white;
+    font-family: 'IBM Plex Sans', sans-serif; font-size: 15px; font-weight: 600;
+    padding: 16px 36px; border-radius: 100px; text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .cta-btn:hover { background: var(--accent2); transform: translateY(-1px); }
+
+  /* FADE */
+  .fade-in { opacity: 0; transform: translateY(18px); transition: opacity 0.55s ease, transform 0.55s ease; }
+  .fade-in.visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero fade-in">
+  <div class="hero-label">Маркетинг · Результаты</div>
+  <h1 class="hero-name">Егор<br>Назаров</h1>
+  <p class="hero-sub">Маркетолог. Снижаю стоимость лида и увеличиваю конверсию — с цифрами и ответственностью за результат.</p>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <span class="stat-num">×63</span>
+      <span class="stat-txt">снижение цены лида</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">722%</span>
+      <span class="stat-txt">ROI на инфопродукте</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">8</span>
+      <span class="stat-txt">закрытых ниш</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">3 972</span>
+      <span class="stat-txt">заявок для застройщика</span>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED: Кабинеты Рихтера -->
+<section class="featured fade-in">
+  <div class="section-label">Главный кейс</div>
+  <div class="featured-card">
+    <div class="featured-niche">Коворкинг · Москва</div>
+    <div class="featured-company">Кабинеты Рихтера</div>
+    <h2 class="featured-title">Лид стал дешевле в 63 раза —<br>с 40 000₽ до 632₽</h2>
+
+    <div class="slider-wrap" id="slider">
+      <div class="slider-track" id="sliderTrack">
+        <img src="https://static.tildacdn.com/tild6331-6631-4437-a336-383133653062/photo.png" alt="Кабинеты Рихтера 1">
+        <img src="https://static.tildacdn.com/tild6162-6333-4337-a439-626534356161/photo_2025-11-03_19-.jpg" alt="Кабинеты Рихтера 2">
+        <img src="https://static.tildacdn.com/tild3566-3336-4035-a332-656132643366/photo.png" alt="Кабинеты Рихтера 3">
+        <img src="https://static.tildacdn.com/tild6661-6566-4561-b036-303436636438/photo_2025-11-03_19-.jpg" alt="Кабинеты Рихтера 4">
+      </div>
+      <button class="slider-btn prev" onclick="slide(-1)">&#8592;</button>
+      <button class="slider-btn next" onclick="slide(1)">&#8594;</button>
+      <div class="slider-dots" id="sliderDots"></div>
+    </div>
+
+    <div class="before-after">
+      <div class="ba-block">
+        <div class="ba-label">До</div>
+        <div class="ba-metric">40 000₽</div>
+        <div class="ba-desc">цена лида<br>отказы 54%</div>
+      </div>
+      <div class="ba-block after">
+        <div class="ba-label">После (4 мес)</div>
+        <div class="ba-metric">632₽</div>
+        <div class="ba-desc">90 заявок/мес<br>загрузка +107%</div>
+      </div>
+    </div>
+    <div class="featured-tags">
+      <span class="tag">Аудит воронки</span>
+      <span class="tag">Сегментация лендинга</span>
+      <span class="tag">Кастдев + конкуренты</span>
+      <span class="tag">Квиз + коллтрекинг</span>
+      <span class="tag">A/B Директ</span>
+    </div>
+  </div>
+</section>
+
+<!-- CASES GRID -->
+<section class="cases-section fade-in">
+  <div class="section-label">Все кейсы</div>
+  <div class="cases-grid">
+
+    <!-- КСМ — wide, без фото -->
+    <div class="case-card wide">
+      <div class="case-niche">Застройщик · 8 месяцев</div>
+      <div class="case-company">КСМ (Кировспецмонтаж)</div>
+      <div class="case-headline">3 972 заявки,<br>CPL в 2,5 раза дешевле</div>
+      <div class="case-metrics">
+        <div class="metric-row">
+          <span class="metric-key">Заявок за 8 мес</span>
+          <span class="metric-val good">3 972 шт</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-key">CPL: было / стало</span>
+          <span class="metric-val">6 000₽ → <span style="color:var(--accent)">2 397₽</span></span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-key">Директ / VK.ads</span>
+          <span class="metric-val">2 428 / 1 402 заявки</span>
+        </div>
+      </div>
+      <div class="case-tags">
+        <span class="case-tag">Яндекс Директ</span>
+        <span class="case-tag">VK.ads</span>
+        <span class="case-tag">Оптимизация кампаний</span>
+      </div>
+    </div>
+
+    <!-- Катарсис -->
+    <div class="case-card">
+      <div class="case-niche">Детейлинг · Нижний Новгород</div>
+      <div class="case-company">Катарсис</div>
+      <div class="case-headline">223 клиента по 158₽ за 96 дней</div>
+      <img class="case-photo" src="https://static.tildacdn.com/tild3536-6339-4735-b230-336531346133/photo.jpg" alt="Катарсис">
+      <div class="case-metrics">
+        <div class="metric-row">
+          <span class="metric-key">Конверсия сайта</span>
+          <span class="metric-val good">12%</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-key">CPL</span>
+          <span class="metric-val good">1 100₽</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-key">SEO-конверсия</span>
+          <span class="metric-val good">21%</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-key">VK без таргета</span>
+          <span class="metric-val">6 заявок</span>
+        </div>
+      </div>
+      <div class="case-tags">
+        <span class="case-tag">AJTBD</span>
+        <span class="case-tag">Директ</span>
+        <span class="case-tag">SEO</span>
+        <span class="case-tag">SMM</span>
+      </div>
+    </div>
+
+    <!-- Инфопродукт — без фото -->
+    <div class="case-card">
+      <div class="case-niche">Инфопродукт · 7 дней</div>
+      <div class="case-company">Личный проект</div>
+      <div class="case-headline">ROI 722% —<br>123 000₽ за неделю</div>
+      <div class="case-metrics">
+        <div class="metric-row">
+          <span class="metric-key">Выручка</span>
+          <span class="metric-val good">123 000₽</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-key">ROI</span>
+          <span class="metric-val good">722%</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-key">Конверсия сайта</span>
+          <span class="metric-val good">8,45%</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-key">Аудитория</span>
+          <span class="metric-val">853 чел.</span>
+        </div>
+      </div>
+      <div class="case-tags">
+        <span class="case-tag">Лендинг</span>
+        <span class="case-tag">Бот</span>
+        <span class="case-tag">Быстрый запуск</span>
+      </div>
+    </div>
+
+    <!-- Грили — без фото -->
+    <div class="case-card">
+      <div class="case-niche">Интернет-магазин</div>
+      <div class="case-company">Магазин грилей</div>
+      <div class="case-headline">Стоимость продажи упала в 7,8 раз</div>
+      <div class="case-metrics">
+        <div class="metric-row">
+          <span class="metric-key">Продаж: было / стало</span>
+          <span class="metric-val">4 → <span style="color:var(--accent)">55 шт</span></span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-key">CPO: было / стало</span>
+          <span class="metric-val">18 177 → <span style="color:var(--accent)">2 323₽</span></span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-key">Конверсия сайта</span>
+          <span class="metric-val">0,12% → <span style="color:var(--accent)">0,86%</span></span>
+        </div>
+      </div>
+      <div class="case-tags">
+        <span class="case-tag">e-commerce</span>
+        <span class="case-tag">Директ</span>
+        <span class="case-tag">Оптимизация</span>
+      </div>
+    </div>
+
+    <!-- Зигма Арт -->
+    <div class="case-card">
+      <div class="case-niche">Театральная студия · Москва</div>
+      <div class="case-company">Зигма Арт</div>
+      <div class="case-headline">6 клиентов вместо 0 за 1 тестовый месяц</div>
+      <img class="case-photo" src="https://static.tildacdn.com/tild3562-6565-4034-b339-326563366138/photo.png" alt="Зигма Арт">
+      <div class="case-metrics">
+        <div class="metric-row">
+          <span class="metric-key">Было: 1 лид за</span>
+          <span class="metric-val">31 000₽</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-key">Конверсия квиза было</span>
+          <span class="metric-val">0,02%</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-key">Клиентов за месяц</span>
+          <span class="metric-val good">+6 (LTV ~8 мес)</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-key">Чек / LTV</span>
+          <span class="metric-val good">11 000 / ~88 000₽</span>
+        </div>
+      </div>
+      <div class="case-tags">
+        <span class="case-tag">Квиз</span>
+        <span class="case-tag">Перезапуск</span>
+        <span class="case-tag">LTV-расчёт</span>
+      </div>
+    </div>
+
+    <!-- Центр защиты кузова -->
+    <div class="case-card">
+      <div class="case-niche">Детейлинг</div>
+      <div class="case-company">Центр защиты кузова</div>
+      <div class="case-headline">8 заявок в первый месяц, CPL 3 660₽</div>
+      <img class="case-photo" src="https://static.tildacdn.com/tild3238-6530-4537-b362-306563643433/_.png" alt="Центр защиты кузова">
+      <div class="case-metrics">
+        <div class="metric-row">
+          <span class="metric-key">Конверсия (средн.)</span>
+          <span class="metric-val good">6%</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-key">Конверсия (сезон)</span>
+          <span class="metric-val good">10%</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-key">CPL</span>
+          <span class="metric-val">3 660₽</span>
+        </div>
+      </div>
+      <div class="case-tags">
+        <span class="case-tag">Директ</span>
+        <span class="case-tag">Сезонность</span>
+      </div>
+    </div>
+
+    <!-- Детейлинг Центр 52 -->
+    <div class="case-card">
+      <div class="case-niche">Детейлинг</div>
+      <div class="case-company">Детейлинг Центр 52</div>
+      <div class="case-headline">8 заявок/мес — только сайт и Карты</div>
+      <img class="case-photo" src="https://static.tildacdn.com/tild3039-3465-4539-a134-366638383236/52.png" alt="Детейлинг Центр 52">
+      <div class="case-metrics">
+        <div class="metric-row">
+          <span class="metric-key">Было заявок с сайта</span>
+          <span class="metric-val">0</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-key">Стало</span>
+          <span class="metric-val good">8/мес</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-key">Яндекс.Карты за 3 мес</span>
+          <span class="metric-val good">~20 лидов</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-key">Бюджет/мес</span>
+          <span class="metric-val">~9 000₽</span>
+        </div>
+      </div>
+      <div class="case-tags">
+        <span class="case-tag">Лендинг</span>
+        <span class="case-tag">Яндекс.Карты</span>
+        <span class="case-tag">Низкий бюджет</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <div class="cta-title">Обсудим ваш проект?</div>
+    <div class="cta-sub">Покажу, что можно улучшить в вашей воронке — бесплатно, конкретно, с цифрами.</div>
+    <a href="https://t.me/egornaz" class="cta-btn">Написать в Telegram →</a>
+  </div>
+</section>
+
+<script>
+  // SLIDER
+  let current = 0;
+  const track = document.getElementById('sliderTrack');
+  const imgs = track.querySelectorAll('img');
+  const total = imgs.length;
+  const dotsContainer = document.getElementById('sliderDots');
+
+  imgs.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'slider-dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => goTo(i);
+    dotsContainer.appendChild(d);
+  });
+
+  function goTo(n) {
+    current = (n + total) % total;
+    track.style.transform = 'translateX(-' + (current * 100) + '%)';
+    dotsContainer.querySelectorAll('.slider-dot').forEach((d, i) => {
+      d.classList.toggle('active', i === current);
+    });
+  }
+
+  function slide(dir) { goTo(current + dir); }
+
+  // Touch swipe
+  let startX = 0;
+  track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, {passive:true});
+  track.addEventListener('touchend', e => {
+    const diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) slide(diff > 0 ? 1 : -1);
+  }, {passive:true});
+
+  setInterval(() => slide(1), 4500);
+
+  // FADE IN
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // CARDS STAGGER
+  const cardObserver = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => { e.target.style.opacity = '1'; e.target.style.transform = 'none'; }, i * 90);
+        cardObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.05 });
+
+  document.querySelectorAll('.case-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(16px)';
+    el.style.transition = 'opacity 0.45s ease, transform 0.45s ease, box-shadow 0.2s';
+    cardObserver.observe(el);
+  });
+</script>
+</body>
+</html>
