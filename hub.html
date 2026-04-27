@@ -1261,7 +1261,7 @@ async function demoteLead(cacheKey) {
   _applyEntityUpdate(r, updated);
 }
 
-aasync function _applyEntityUpdate(original, updated) {
+async function _applyEntityUpdate(original, updated) {
   const idx = S.entities.findIndex(e => e['Название']===original['Название'] && e['Клиент']===original['Клиент']);
 
   // Конвертация лида → проект при статусе "Получены деньги"
