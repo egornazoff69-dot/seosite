@@ -1261,8 +1261,45 @@ async function demoteLead(cacheKey) {
   _applyEntityUpdate(r, updated);
 }
 
-async function _applyEntityUpdate(original, updated) {
+aasync function _applyEntityUpdate(original, updated) {
   const idx = S.entities.findIndex(e => e['Название']===original['Название'] && e['Клиент']===original['Клиент']);
+
+  // Конвертация лида → проект при статусе "Получены деньги"
+  if (updated['Тип'] === 'Лид' && updated['Статус'] === 'Получены деньги') {
+    const project = {
+      'Тип': 'Проект',
+      'Название': updated['Название'],
+      'Клиент': updated['Клиент'],
+      'Статус': 'В работе',
+      'Сумма': updated['Сумма'] || '',
+      'Текущий фокус': updated['Текущий фокус'] || '',
+      'Следующий шаг': updated['Следующий шаг'] || '',
+      'Дата следующего шага': updated['Дата следующего шага'] || '',
+      'Заметки': updated['Заметки'] || ''
+    };
+    // Удаляем лид из массива
+    if (idx !== -1) S.entities.splice(idx, 1);
+    // Добавляем проект
+    S.entities.push(project);
+    if (G_TOKEN) {
+      try {
+        // Удаляем строку лида из Sheets
+        const rows = await getSheetValues('Сущности');
+        const rowIdx = rows.findIndex((row, i) => i > 0 && row[1] === original['Название'] && row[2] === original['Клиент']);
+        if (rowIdx !== -1) {
+          await sheetsRequest('POST', ':batchUpdate', {
+            requests: [{ deleteDimension: { range: { sheetId: 224591603, dimension: 'ROWS', startIndex: rowIdx, endIndex: rowIdx + 1 } } }]
+          });
+        }
+        // Добавляем проект
+        await appendRow('Сущности', [project['Тип'],project['Название'],project['Клиент'],project['Статус'],project['Сумма'],project['Текущий фокус'],project['Следующий шаг'],project['Дата следующего шага'],project['Заметки']]);
+      } catch(e) { console.error('Конвертация:', e); }
+    }
+    renderPipeline();
+    renderHome();
+    return;
+  }
+
   if (idx !== -1) S.entities[idx] = updated;
   if (G_TOKEN) { try { await updateEntityRow(updated); } catch(e) { console.error(e); } }
   renderPipeline();
