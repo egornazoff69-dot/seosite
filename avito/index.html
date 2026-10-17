@@ -1,0 +1,960 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Авито: заявки под ключ. Платите, только если за 21 день придут 10 квалифицированных заявок</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<meta name="description" content="Настройка рекламы на Авито бесплатно. Если за 21 день не наберём 10 квалифицированных заявок, вы ничего не платите за работу и забираете все настройки себе.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#087F3B">
+<link rel="canonical" href="https://nazarovmarketing.ru/avito/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:title" content="Авито: заявки под ключ">
+<meta property="og:description" content="Настройка рекламы на Авито бесплатно. Если за 21 день не наберём 10 квалифицированных заявок, вы ничего не платите за работу и забираете все настройки себе.">
+<meta property="og:url" content="https://nazarovmarketing.ru/avito/">
+<meta property="og:image" content="https://nazarovmarketing.ru/avito/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 44 44%27%3E%3Ccircle cx=%2714%27 cy=%2714%27 r=%2710%27 fill=%27%2304E061%27/%3E%3Ccircle cx=%2734%27 cy=%2710%27 r=%276%27 fill=%27%23965EEB%27/%3E%3Ccircle cx=%2735%27 cy=%2731%27 r=%279%27 fill=%27%230099F7%27/%3E%3Ccircle cx=%2713%27 cy=%2735%27 r=%276.5%27 fill=%27%23FF4053%27/%3E%3C/svg%3E">
+<style id="pg-css">
+/* Layout: одна колонка-скролл. Светлый зелёно-белый фон, тёмно-зелёный блок только у гарантии. Этапы раскрываются по кнопке «Подробнее». Всё редактируется: режим правки открывается по ссылке с #edit. */
+:root {
+  --bg: #F2F8F3;
+  --surface: #FFFFFF;
+  --ink: #0E2A1B;
+  --muted: #46604F;
+  --line: #D0E4D5;
+  --accent: #087F3B;
+  --bright: #3DE07F;
+  --tint: #E1F3E6;
+  --deep: #0E2A1B;
+  --deep2: #173A29;
+  --on-deep: #E9F4EC;
+  --display: 'Playfair Display', Georgia, serif;
+  --body: 'Manrope', 'Segoe UI', Arial, sans-serif;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.55; }
+button { font-family: inherit; }
+h1, h2, h3, h4, p, ul, ol { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+h1, h2, h3 { text-wrap: balance; }
+.wrap { max-width: 1080px; margin-inline: auto; padding-inline: 20px; min-width: 0; }
+section { padding-block: 56px; }
+@media (min-width: 760px) { section { padding-block: 88px; } }
+h2 { font-family: var(--display); font-weight: 600; font-size: clamp(28px, 5vw, 44px); line-height: 1.15; }
+h3 { font-family: var(--display); font-weight: 600; font-size: 22px; line-height: 1.25; }
+.sec-head { display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+.sub { color: var(--muted); max-width: 62ch; }
+
+/* навигация */
+.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: rgba(242, 248, 243, 0.94); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.nav-in { display: flex; gap: 6px; overflow-x: auto; padding-block: 10px; scrollbar-width: none; }
+.nav-in::-webkit-scrollbar { display: none; }
+.nav button { flex: none; border: 0; background: transparent; color: var(--muted); font-size: 15px; font-weight: 600; padding: 8px 14px; border-radius: 999px; cursor: pointer; white-space: nowrap; }
+.nav button:hover { background: var(--tint); color: var(--accent); }
+
+/* бренд */
+.brand { display: inline-flex; align-items: center; gap: 12px; align-self: flex-start; }
+.brand svg { width: 44px; height: 44px; flex: none; }
+.brand-name { font-family: var(--body); font-weight: 800; font-size: 28px; letter-spacing: -0.02em; color: var(--ink); }
+
+/* первый экран */
+.hero { background: radial-gradient(60% 90% at 100% 0%, #CDEEDA 0%, rgba(242, 248, 243, 0) 62%), var(--bg); padding-block: 48px 64px; }
+@media (min-width: 760px) { .hero { padding-block: 88px 104px; } }
+.hero-in { display: flex; flex-direction: column; gap: 28px; max-width: 880px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { font-size: 14px; font-weight: 700; color: var(--accent); background: var(--tint); border-radius: 999px; padding: 6px 14px; }
+h1 { font-family: var(--display); font-weight: 600; font-size: clamp(32px, 7vw, 62px); line-height: 1.12; }
+h1 em { font-style: normal; color: var(--accent); }
+.quote { font-size: clamp(18px, 2.6vw, 22px); color: var(--muted); border-left: 3px solid var(--accent); padding-left: 20px; max-width: 60ch; }
+.hero-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 12px; }
+.stat { display: flex; flex-direction: column; gap: 4px; background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 18px 20px; min-width: 0; }
+.btn-main { display: inline-flex; align-items: center; justify-content: center; gap: 8px; align-self: flex-start; background: var(--accent); color: #FFFFFF; border: 0; border-radius: 999px; padding: 16px 28px; font-size: 17px; font-weight: 700; text-decoration: none; cursor: pointer; }
+.btn-main:hover { background: #066A31; }
+.btn-main:focus-visible, .btn-more:focus-visible, .nav button:focus-visible, .tb button:focus-visible { outline: 3px solid var(--bright); outline-offset: 2px; }
+
+/* кейсы */
+.cases-sec { background: var(--surface); }
+.cases { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 16px; }
+.case { position: relative; display: flex; flex-direction: column; gap: 24px; background: var(--bg); border: 1px solid var(--line); border-radius: 20px; padding: 24px; min-width: 0; }
+.case h3 { font-family: var(--body); font-size: 18px; font-weight: 700; line-height: 1.4; }
+.metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: auto; }
+.metric { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.num { font-family: var(--display); font-weight: 600; font-size: clamp(24px, 4vw, 32px); color: var(--accent); line-height: 1.1; overflow-wrap: anywhere; }
+.lbl { font-size: 14px; color: var(--muted); line-height: 1.3; }
+.add { display: none; margin-top: 16px; width: 100%; border: 2px dashed var(--accent); background: var(--tint); color: var(--accent); font-weight: 700; font-size: 16px; padding: 16px; border-radius: 16px; cursor: pointer; }
+
+/* что входит */
+.grp { display: flex; flex-direction: column; gap: 8px; margin: 40px 0 16px; padding-top: 28px; border-top: 1px solid var(--line); }
+.grp:first-of-type { margin-top: 0; padding-top: 0; border-top: 0; }
+.dir + .dir { margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--line); }
+.grp-tag { font-size: 13px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+.svc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 16px; align-items: start; margin-top: 16px; }
+.svc { position: relative; display: flex; flex-direction: column; gap: 16px; background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 24px; min-width: 0; }
+.stage { align-self: flex-start; font-size: 13px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); background: var(--tint); border-radius: 999px; padding: 4px 12px; }
+.pav { display: flex; flex-direction: column; gap: 14px; }
+.pav-row { display: flex; flex-direction: column; gap: 4px; }
+.tag { font-size: 13px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
+.tag.win { color: var(--accent); }
+.feat { background: var(--tint); border-color: #B6D9C0; padding: 28px; }
+@media (min-width: 760px) { .feat { padding: 40px; } .feat h3 { font-size: 30px; } }
+.checks li { position: relative; padding-left: 32px; margin-top: 10px; }
+.checks li::before { content: ""; position: absolute; left: 6px; top: 6px; width: 7px; height: 13px; border: solid var(--accent); border-width: 0 3px 3px 0; transform: rotate(45deg); }
+.btn-more { align-self: flex-start; border: 0; background: var(--accent); color: #FFFFFF; font-weight: 700; font-size: 16px; padding: 12px 24px; border-radius: 999px; cursor: pointer; animation: pulse 2.2s ease-out infinite; }
+.btn-more[aria-expanded="true"] { animation: none; background: var(--surface); color: var(--accent); box-shadow: inset 0 0 0 2px var(--accent); }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(8, 127, 59, 0.5); } 70% { box-shadow: 0 0 0 14px rgba(8, 127, 59, 0); } 100% { box-shadow: 0 0 0 0 rgba(8, 127, 59, 0); } }
+@media (prefers-reduced-motion: reduce) { .btn-more { animation: none; } }
+.more { display: none; flex-direction: column; gap: 14px; border-top: 1px solid var(--line); padding-top: 16px; color: var(--muted); }
+.more.open { display: flex; }
+.more h4 { font-size: 17px; font-weight: 800; color: var(--ink); }
+.more li { margin-top: 10px; padding-left: 18px; position: relative; }
+.more li::before { content: ""; position: absolute; left: 0; top: 11px; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+.more b { color: var(--ink); }
+.term { font-weight: 700; color: var(--accent); background: var(--surface); border-radius: 12px; padding: 12px 16px; }
+.feat .term { background: var(--surface); }
+
+/* 30 дней */
+.days-sec { background: var(--tint); }
+.phases { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 16px; }
+.phase { position: relative; background: var(--surface); border: 1px solid #B6D9C0; border-radius: 20px; padding: 28px 24px; min-width: 0; }
+.phase.last { border: 2px solid var(--accent); }
+.phase h3 { color: var(--accent); }
+.phase .checks li { font-size: 16px; }
+
+/* гарантия */
+.guar { background: var(--deep); color: var(--on-deep); }
+.guar h2 { color: var(--bright); }
+.guar-in { display: flex; flex-direction: column; gap: 28px; max-width: 880px; }
+.guar-big { font-family: var(--display); font-weight: 600; font-size: clamp(24px, 4.6vw, 40px); line-height: 1.25; color: #F5F9F6; text-wrap: balance; }
+.guar-note { color: #B9D4C4; max-width: 60ch; }
+.guar-box { background: var(--deep2); border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 8px; }
+.guar-box h3 { font-family: var(--body); font-size: 17px; font-weight: 800; color: var(--bright); }
+.guar-box li { position: relative; padding-left: 28px; margin-top: 8px; color: var(--on-deep); }
+.guar-box li::before { content: ""; position: absolute; left: 4px; top: 6px; width: 6px; height: 12px; border: solid var(--bright); border-width: 0 3px 3px 0; transform: rotate(45deg); }
+.fine { font-size: 15px; color: #8FB5A0; }
+
+/* цена */
+.prices { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 16px; }
+.price { position: relative; display: flex; flex-direction: column; gap: 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 28px; min-width: 0; }
+.ptitle { font-size: 18px; font-weight: 700; color: var(--muted); }
+.pnum { font-family: var(--display); font-weight: 600; font-size: clamp(32px, 6vw, 48px); line-height: 1.05; color: var(--accent); overflow-wrap: anywhere; }
+.pnote { font-size: 15px; color: var(--muted); }
+.bonus { margin-top: 16px; background: var(--tint); border: 1px solid #B6D9C0; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 16px; }
+.bonus h3 { font-family: var(--body); font-weight: 800; font-size: 17px; letter-spacing: 0.04em; color: var(--accent); }
+.bonus li { position: relative; padding-left: 32px; margin-top: 8px; font-size: 18px; font-weight: 600; }
+.bonus li::before { content: ""; position: absolute; left: 6px; top: 6px; width: 7px; height: 13px; border: solid var(--accent); border-width: 0 3px 3px 0; transform: rotate(45deg); }
+
+/* следующий шаг */
+.next-sec { background: var(--surface); }
+.steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 16px; margin-bottom: 32px; }
+.steps li { position: relative; display: flex; align-items: center; gap: 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 20px; padding: 20px; font-weight: 700; font-size: 18px; min-width: 0; }
+.n { flex: none; display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background: var(--accent); color: #FFFFFF; font-family: var(--display); font-size: 20px; }
+.contact { margin-top: 16px; color: var(--muted); }
+
+/* режим редактирования */
+.ctl { display: none; }
+.editing .ctl { display: flex; gap: 6px; position: absolute; top: 10px; right: 10px; z-index: 5; }
+.ctl button { border: 0; border-radius: 999px; height: 32px; padding: 0 14px; background: #FFFFFF; color: var(--accent); font-size: 14px; font-weight: 700; cursor: pointer; box-shadow: 0 0 0 1px var(--line); }
+.ctl .rm { width: 32px; padding: 0; color: #A12B2B; font-size: 22px; line-height: 1; }
+.ctl button:focus-visible { outline: 3px solid var(--bright); outline-offset: 2px; }
+[data-hide], [data-rm] { position: relative; }
+html:not(.editing) .is-hidden { display: none !important; }
+.editing .is-hidden { outline: 2px dashed var(--muted); outline-offset: -2px; }
+.editing .is-hidden > :not(.ctl) { opacity: 0.35; }
+.li-x, .li-add { display: none; }
+.editing .li-x { display: inline-flex; position: absolute; right: 0; top: 1px; width: 24px; height: 24px; align-items: center; justify-content: center; border: 0; border-radius: 50%; background: #FFFFFF; color: #A12B2B; font-size: 16px; line-height: 1; cursor: pointer; box-shadow: 0 0 0 1px var(--line); }
+.editing .steps li .li-x { top: 50%; right: 12px; transform: translateY(-50%); }
+.editing .checks li, .editing .more li, .editing .guar-box li, .editing .bonus li { padding-right: 34px; }
+.editing .steps li { padding-right: 48px; }
+.editing .li-add { display: inline-block; align-self: flex-start; margin-top: 10px; border: 1.5px dashed var(--accent); background: var(--tint); color: var(--accent); font: inherit; font-size: 14px; font-weight: 700; padding: 6px 14px; border-radius: 999px; cursor: pointer; }
+.editing .steps + .li-add { margin: -16px 0 24px; }
+.guar .li-add, .guar .add { background: transparent; color: var(--bright); border-color: var(--bright); }
+.guar-boxes { display: flex; flex-direction: column; gap: 28px; }
+.li-x:focus-visible, .li-add:focus-visible { outline: 3px solid var(--bright); outline-offset: 2px; }
+.editing .add { display: block; }
+.editing .more { display: flex; }
+.editing .btn-more { display: none; }
+.editing #app { padding-bottom: 120px; }
+.editing #app [contenteditable] { cursor: text; }
+.editing #app [contenteditable]:hover { outline: 1px dashed var(--accent); outline-offset: 3px; }
+.editing #app [contenteditable]:focus { outline: 2px solid var(--accent); outline-offset: 3px; background: rgba(61, 224, 127, 0.16); }
+.tb { display: none; position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; flex-wrap: wrap; align-items: center; gap: 8px; background: var(--deep); color: var(--on-deep); padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px)); font-size: 15px; }
+.editing .tb { display: flex; }
+.tb-title { font-weight: 800; color: var(--bright); }
+.tb input { flex: 1 1 200px; min-width: 0; border: 1px solid #2B5A45; background: var(--deep2); color: #FFFFFF; border-radius: 10px; padding: 10px 12px; font: inherit; }
+.tb button { border: 0; border-radius: 10px; padding: 10px 14px; font-weight: 700; cursor: pointer; background: var(--deep2); color: var(--on-deep); }
+.tb button.primary { background: var(--bright); color: var(--deep); }
+#tbmsg { color: #B9D4C4; }
+</style>
+
+</head><body>
+<div id="app">
+
+<nav class="nav" aria-label="Разделы">
+  <div class="wrap nav-in">
+    <button type="button" data-scroll="what">Что входит</button>
+    <button type="button" data-scroll="days">21 день</button>
+    <button type="button" data-scroll="guarantee">Гарантия</button>
+    <button type="button" data-scroll="price">Стоимость</button>
+    <button type="button" data-scroll="next">Следующий шаг</button>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-in">
+      <div class="brand" aria-label="Авито">
+        <svg viewBox="0 0 44 44" role="img" aria-hidden="true"><circle cx="14" cy="14" r="10" fill="#04E061"/><circle cx="34" cy="10" r="6" fill="#965EEB"/><circle cx="35" cy="31" r="9" fill="#0099F7"/><circle cx="13" cy="35" r="6.5" fill="#FF4053"/></svg>
+        <span class="brand-name">Авито</span>
+      </div>
+      <div class="chips">
+        <span class="chip ed">Авито</span>
+        <span class="chip ed">Авито Реклама</span>
+        <span class="chip ed">Авито Таргет (ADS)</span>
+      </div>
+      <h1>Настроим рекламу на Авито бесплатно. Вы платите, только если за 21 день придут <em>10 квалифицированных заявок</em></h1>
+      <p class="quote">«Мы не просто настраиваем рекламу. Мы строим систему, которая сама тестирует объявления, убирает слабые и платит за продвижение только за те, что уже доказали эффективность».</p>
+      <div class="hero-stats">
+        <div class="stat"><span class="num ed">0 ₽</span><span class="lbl ed">за настройку и запуск</span></div>
+        <div class="stat"><span class="num ed">21 день</span><span class="lbl ed">на проверку результата</span></div>
+        <div class="stat"><span class="num ed">10</span><span class="lbl ed">квалифицированных заявок, чтобы продолжить</span></div>
+      </div>
+      <button type="button" class="btn-main" data-scroll="what">Смотреть, что входит</button>
+    </div>
+  </div>
+</header>
+
+<section id="what">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Что входит в работу</h2>
+      <p class="sub">Два направления работы. Можно взять одно или оба сразу. Нажмите «Подробнее» у любого этапа, чтобы увидеть, как это делается.</p>
+    </div>
+
+    <div class="dir">
+    <div class="grp">
+      <span class="grp-tag ed">Направление 1</span>
+      <h2 class="ed">Авито Реклама: автоматизированное продвижение карточек</h2>
+    </div>
+
+    <article class="svc feat">
+      <h3>Система «естественного отбора» для ваших объявлений</h3>
+      <div class="pav">
+        <div class="pav-row"><span class="tag">Что это</span><p>Система, которая сама тестирует объявления, архивирует слабые, выводит новые и управляет ставками по аукциону в реальном времени.</p></div>
+        <div class="pav-row"><span class="tag">Чем сильнее обычной настройки</span><p>Платное продвижение получают только карточки, которые уже доказали эффективность. Остальное работает бесплатно за счёт того, что Авито бустит свежие объявления.</p></div>
+        <div class="pav-row"><span class="tag win">Что это даёт бизнесу</span>
+          <ul class="checks">
+            <li>рекламный бюджет расходуется почти в 2 раза эффективнее: вы не платите за продвижение мёртвых карточек</li>
+            <li>карточки держатся на высоких позициях и не вылетают из выдачи, когда объявление «выгорает»</li>
+            <li>стабильный поток покупателей с площадки, где ваш товар уже ищут</li>
+            <li>со временем система знает, какие заголовки, фото и офферы работают именно в вашей нише, а стоимость заявки падает</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <div class="svc-grid" id="list-a">
+      <article class="svc">
+        <span class="stage ed">Этап 1</span>
+        <h3>Аналитика спроса, SEO и анализ конкурентов</h3>
+        <div class="pav">
+          <div class="pav-row"><span class="tag">Что делаем</span><p>Считаем реальный спрос на ваш товар на Авито, собираем все запросы покупателей и разбираем объявления лидеров вашей категории.</p></div>
+          <div class="pav-row"><span class="tag">Чем сильнее</span><p>Запускаемся на данных, а не наугад: до вложения бюджета знаем спрос, сезонность и слабые места конкурентов.</p></div>
+          <div class="pav-row"><span class="tag win">Что это даёт бизнесу</span>
+            <ul class="checks">
+              <li>вы не платите за вход в нишу, где нет спроса</li>
+              <li>карточки находят не только по категории, но и через поиск внутри Авито: это бесплатный органический трафик</li>
+              <li>видите, где конкуренты слабы и с каким оффером зайти без ценовой войны</li>
+              <li>карточки сразу показывают результат, а не «разогреваются» месяц</li>
+            </ul>
+          </div>
+        </div>
+        <button type="button" class="btn-more" aria-expanded="false">Подробнее</button>
+        <div class="more">
+          <h4>Что входит:</h4>
+          <ul>
+            <li><b>Анализ спроса</b>: сколько людей ищут ваш товар, динамика по месяцам, есть ли сезонность</li>
+            <li><b>Семантическое ядро</b>: все ключевые слова и фразы покупателей, от высокочастотных до узких нишевых запросов</li>
+            <li><b>Внедрение ключей</b> в заголовки и описания карточек</li>
+            <li><b>Анализ конкурентов</b>: сколько объявлений у лидеров, какие офферы, фото, заголовки, цены и условия</li>
+            <li><b>Незанятые позиции</b>: какие запросы недообслужены, какой оффер или формат подачи даст преимущество</li>
+            <li><b>Ценовая стратегия</b> и позиционирование под Авито-аудиторию вашей ниши</li>
+          </ul>
+          <p class="term">Результат этапа: запускаемся не наугад, а на данных. Знаем спрос, рабочие слова и где конкуренты слабее.</p>
+        </div>
+      </article>
+
+      <article class="svc">
+        <span class="stage ed">Этап 2</span>
+        <h3>Создание и запуск карточек товаров</h3>
+        <div class="pav">
+          <div class="pav-row"><span class="tag">Что делаем</span><p>Делаем 5+ карточек под ваш товар, у каждой свои фото, оффер, заголовок и описание, и размещаем их одновременно в нужных категориях.</p></div>
+          <div class="pav-row"><span class="tag">Чем сильнее</span><p>Не одна карточка «на удачу», а несколько гипотез параллельно. Авито алгоритмически бустит новые объявления, и мы используем это в вашу пользу.</p></div>
+          <div class="pav-row"><span class="tag win">Что это даёт бизнесу</span>
+            <ul class="checks">
+              <li>данные по результатам с первого дня, а не через месяц ожидания</li>
+              <li>быстрее находим связку «фото + заголовок + оффер», которая приводит покупателей</li>
+              <li>вы не зависите от судьбы одного объявления</li>
+              <li>тексты написаны на языке покупателя, который ищет на Авито прямо сейчас</li>
+            </ul>
+          </div>
+        </div>
+        <button type="button" class="btn-more" aria-expanded="false">Подробнее</button>
+        <div class="more">
+          <h4>Что входит:</h4>
+          <ul>
+            <li><b>Несколько карточек</b>: каждая отдельный вариант с уникальными фото, оффером, заголовком и описанием</li>
+            <li><b>Продающие тексты</b> с внедрением собранных ключей</li>
+            <li><b>Визуал</b>: живое фото, инфографика, фото с ценой, фото с преимуществами, форматы тестируются параллельно</li>
+            <li><b>Одновременное размещение 5+ карточек</b> (зависит от ниши, правил площадки и региона)</li>
+          </ul>
+          <p class="term">Результат этапа: несколько вариантов запущены одновременно, система собирает данные с первого дня.</p>
+        </div>
+      </article>
+
+      <article class="svc">
+        <span class="stage ed">Этап 3</span>
+        <h3>Автоматизированный А/Б-тест карточек</h3>
+        <div class="pav">
+          <div class="pav-row"><span class="tag">Что делаем</span><p>Следим за просмотрами каждой карточки в реальном времени. Если за 7 дней карточка не набрала порог просмотров, она уходит в архив, а на её место выходит новая.</p></div>
+          <div class="pav-row"><span class="tag">Чем сильнее</span><p>Слабое объявление не висит месяцами и не съедает бюджет. Новая карточка выходит с новым креативом, и Авито снова видит её как свежую.</p></div>
+          <div class="pav-row"><span class="tag win">Что это даёт бизнесу</span>
+            <ul class="checks">
+              <li>платите только за карточки, которые доказали эффективность</li>
+              <li>Авито постоянно видит свежие объявления и бустит их бесплатно</li>
+              <li>если основной товар не заходит, тестируем смежные позиции и находим рабочую связку</li>
+              <li>накапливается база знаний о том, что работает в вашей нише</li>
+            </ul>
+          </div>
+        </div>
+        <button type="button" class="btn-more" aria-expanded="false">Подробнее</button>
+        <div class="more">
+          <h4>Что входит:</h4>
+          <ul>
+            <li><b>Автоконтроль эффективности</b> каждой карточки в реальном времени</li>
+            <li><b>Правило замены</b>: нет порога просмотров за 7 дней, значит карточка в архив</li>
+            <li><b>Свежая замена</b>: новый креатив, оффер и фото, Авито снова бустит как новое</li>
+            <li><b>Ротация товаров</b> внутри категории, если основной товар не заходит</li>
+            <li><b>Накопление данных</b>: какие заголовки, фото и офферы стабильно дают просмотры</li>
+          </ul>
+          <p class="term">Результат этапа: вы платите не за продвижение мёртвых карточек, а только за те, что доказали эффективность.</p>
+        </div>
+      </article>
+
+      <article class="svc">
+        <span class="stage ed">Этап 4</span>
+        <h3>Автоматическая система ставок на эффективных карточках</h3>
+        <div class="pav">
+          <div class="pav-row"><span class="tag">Что делаем</span><p>Подключаем управление ставками только к карточкам, прошедшим порог просмотров. Система в реальном времени анализирует аукцион и ставит минимально нужную цену за позицию.</p></div>
+          <div class="pav-row"><span class="tag">Чем сильнее</span><p>Ставка не фиксированная. В один час она может быть 200 ₽ за просмотр, в другой 5 ₽ при той же позиции. Потолок расхода задаём заранее.</p></div>
+          <div class="pav-row"><span class="tag win">Что это даёт бизнесу</span>
+            <ul class="checks">
+              <li>карточка держится на высоких позициях, и вы не переплачиваете, когда конкуренция низкая</li>
+              <li>бюджет расходуется управляемо и без сюрпризов: ставка не вылетает выше лимита</li>
+              <li>деньги идут только на объявления, которые уже приводят обращения</li>
+              <li>не нужно самому следить за аукционом и пересчитывать ставки</li>
+            </ul>
+          </div>
+        </div>
+        <button type="button" class="btn-more" aria-expanded="false">Подробнее</button>
+        <div class="more">
+          <h4>Что входит:</h4>
+          <ul>
+            <li><b>Ставки только на прошедших порог</b>: платное продвижение получают доказавшие себя объявления</li>
+            <li><b>Аукцион в реальном времени</b>: минимально необходимая цена для высокой позиции</li>
+            <li><b>Динамика по времени суток</b> и активности конкурентов</li>
+            <li><b>Потолок расхода</b>: ставка не уходит выше заданного максимума</li>
+            <li><b>Мониторинг позиций</b>: карточка в топе при минимальных затратах в каждый момент</li>
+          </ul>
+          <p class="term">Результат этапа: карточка стабильно в топе, а вы не переплачиваете в моменты, когда ставки можно снизить.</p>
+        </div>
+      </article>
+
+      <article class="svc">
+        <span class="stage ed">Этап 5</span>
+        <h3>Оптимизация и масштабирование</h3>
+        <div class="pav">
+          <div class="pav-row"><span class="tag">Что делаем</span><p>Каждую неделю разбираем результаты, заменяем слабые варианты на новые, обновляем семантику и тиражируем работающие связки на другие категории и регионы.</p></div>
+          <div class="pav-row"><span class="tag">Чем сильнее</span><p>Система не останавливается: всегда есть пул свежих креативов, готовых к запуску.</p></div>
+          <div class="pav-row"><span class="tag win">Что это даёт бизнесу</span>
+            <ul class="checks">
+              <li>стоимость заявки снижается с каждым месяцем</li>
+              <li>нашли карточку с дешёвыми обращениями, тиражируем оффер на другие категории и регионы</li>
+              <li>видите в цифрах просмотры, обращения, стоимость заявки и расход по каждой карточке</li>
+              <li>следим за сезонностью, и вы не теряете спрос, когда он смещается</li>
+            </ul>
+          </div>
+        </div>
+        <button type="button" class="btn-more" aria-expanded="false">Подробнее</button>
+        <div class="more">
+          <h4>Что входит:</h4>
+          <ul>
+            <li><b>Еженедельный анализ</b>: какие карточки прошли тест, какие в архиве, какие офферы дают самую низкую стоимость обращения</li>
+            <li><b>Новые варианты</b> на замену слабым</li>
+            <li><b>Обновление семантики</b> под новые запросы и сезонные изменения</li>
+            <li><b>Масштабирование</b> работающих связок на другие категории и регионы</li>
+            <li><b>Отчётность</b>: просмотры, обращения, стоимость обращения, расход по каждой карточке</li>
+          </ul>
+          <p class="term">Результат этапа: эффективность растёт, стоимость заявки снижается с каждым месяцем.</p>
+        </div>
+      </article>
+    </div>
+    </div>
+
+    <div class="dir">
+    <div class="grp">
+      <span class="grp-tag ed">Направление 2</span>
+      <h2 class="ed">Авито Таргет (ADS): реклама точно в цель</h2>
+    </div>
+
+    <article class="svc feat">
+      <h3>Показываем объявления тем, кто с наибольшей вероятностью купит</h3>
+      <div class="pav">
+        <div class="pav-row"><span class="tag">Что это</span><p>Новый рекламный инструмент Авито. Показываем объявления конкретной аудитории на крупнейшей площадке страны, запускаем рекламу на собранные базы реальных и потенциальных покупателей и выводим их в мессенджеры или на сайт.</p></div>
+        <div class="pav-row"><span class="tag">Чем сильнее обычной рекламы</span><p>Реклама идёт не на всю площадку, а на тех, кто с наибольшей вероятностью станет вашим покупателем: на загруженные базы, на смотревших конкурентов и на похожих на ваших лучших клиентов.</p></div>
+        <div class="pav-row"><span class="tag win">Что это даёт бизнесу</span>
+          <ul class="checks">
+            <li>бюджет не сливается на нецелевые показы</li>
+            <li>стоимость целевого обращения ниже, чем при широком таргетинге</li>
+            <li>покупатели сразу попадают в диалог в Telegram, WhatsApp, MAX или на ваш сайт</li>
+            <li>особенно эффективно в оптовых нишах: покупателей на Авито много, но они ещё не видели ваше предложение</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <div class="svc-grid" id="list-b">
+      <article class="svc">
+        <span class="stage ed">Этап 1</span>
+        <h3>Анализ аудитории и стратегия запуска</h3>
+        <div class="pav">
+          <div class="pav-row"><span class="tag">Что делаем</span><p>Выясняем, кто из ваших покупателей есть на Авито, какие категории он смотрит и как себя ведёт, и выбираем стратегию таргетинга под вашу нишу.</p></div>
+          <div class="pav-row"><span class="tag">Чем сильнее</span><p>Выбираем оптимальную комбинацию таргетингов (интересы, география, поведение, загружаемые базы) и считаем медиаплан до запуска.</p></div>
+          <div class="pav-row"><span class="tag win">Что это даёт бизнесу</span>
+            <ul class="checks">
+              <li>запускаетесь точечно, а не на всю площадку</li>
+              <li>заранее знаете прогноз охвата и стоимости клика в вашей нише</li>
+              <li>видите, что уже крутят конкуренты и где есть незанятые позиции</li>
+              <li>трафик ведёт туда, где конверсия лучше: в мессенджер, на лендинг или на карточку</li>
+            </ul>
+          </div>
+        </div>
+        <button type="button" class="btn-more" aria-expanded="false">Подробнее</button>
+        <div class="more">
+          <h4>Что входит:</h4>
+          <ul>
+            <li><b>Анализ целевой аудитории</b> на Авито: кто присутствует на площадке, какие категории просматривает</li>
+            <li><b>Стратегия таргетинга</b>: интересы и категории, география, поведение, загружаемые базы</li>
+            <li><b>Анализ конкурентов в Авито ADS</b>: какие форматы используют, где незанятые позиции</li>
+            <li><b>Целевое действие</b>: Telegram, WhatsApp, MAX, лендинг или карточка товара</li>
+            <li><b>Медиаплан</b>: бюджет по аудиториям, прогноз охвата и стоимости клика</li>
+          </ul>
+          <p class="term">Результат этапа: запускаемся точечно на тех, кто с наибольшей вероятностью станет вашим покупателем.</p>
+        </div>
+      </article>
+
+      <article class="svc">
+        <span class="stage ed">Этап 2</span>
+        <h3>Сбор и загрузка баз для точечного таргетинга</h3>
+        <div class="pav">
+          <div class="pav-row"><span class="tag">Что делаем</span><p>Собираем базы потенциальных и действующих покупателей, загружаем их в Авито ADS и создаём look-alike аудитории: Авито находит пользователей, похожих на ваших лучших клиентов.</p></div>
+          <div class="pav-row"><span class="tag">Чем сильнее</span><p>Реклама показывается конкретным людям из баз, а не всем подряд. Look-alike масштабирует охват без потери качества аудитории.</p></div>
+          <div class="pav-row"><span class="tag win">Что это даёт бизнесу</span>
+            <ul class="checks">
+              <li>стоимость целевого обращения в разы ниже, чем при широком таргетинге</li>
+              <li>самая тёплая аудитория для повторных продаж: те, кто уже покупал или интересовался</li>
+              <li>видите покупателей, которые прямо сейчас выбирают поставщика в вашей категории</li>
+              <li>масштабируетесь на похожую аудиторию, не теряя качества заявок</li>
+            </ul>
+          </div>
+        </div>
+        <button type="button" class="btn-more" aria-expanded="false">Подробнее</button>
+        <div class="more">
+          <h4>Что входит:</h4>
+          <ul>
+            <li><b>База потенциальных покупателей</b>: компании и контакты из открытых источников под портрет идеального покупателя (ниша, география, размер бизнеса)</li>
+            <li><b>База действующих покупателей</b> из вашей CRM</li>
+            <li><b>База тех, кто смотрел конкурентов</b></li>
+            <li><b>Загрузка баз в Авито ADS</b>: система находит людей на площадке и показывает им рекламу</li>
+            <li><b>Look-alike аудитории</b>: похожие по поведению и интересам на ваших лучших покупателей</li>
+          </ul>
+          <p class="term">Результат этапа: реклама показывается конкретным людям из собранных баз, а не всем подряд.</p>
+        </div>
+      </article>
+
+      <article class="svc">
+        <span class="stage ed">Этап 3</span>
+        <h3>Разработка креативов и офферов</h3>
+        <div class="pav">
+          <div class="pav-row"><span class="tag">Что делаем</span><p>Пишем разные объявления под каждый сегмент: отдельный оффер для новых покупателей, для тёплой базы и для тех, кто смотрел конкурентов, и делаем несколько версий для А/Б-теста.</p></div>
+          <div class="pav-row"><span class="tag">Чем сильнее</span><p>Каждый сегмент видит рекламу про его ситуацию, а не общий текст. Формат объявления адаптирован под целевое действие.</p></div>
+          <div class="pav-row"><span class="tag win">Что это даёт бизнесу</span>
+            <ul class="checks">
+              <li>конкретная выгода считывается за 3 секунды, без маркетинговой воды</li>
+              <li>находим креатив с лучшим CTR и стоимостью клика в вашей нише</li>
+              <li>покупатель сразу попадает туда, где ему удобнее начать диалог</li>
+            </ul>
+          </div>
+        </div>
+        <button type="button" class="btn-more" aria-expanded="false">Подробнее</button>
+        <div class="more">
+          <h4>Что входит:</h4>
+          <ul>
+            <li><b>Объявления под каждый сегмент</b> аудитории</li>
+            <li><b>Заголовки и тексты</b> на языке покупателя</li>
+            <li><b>Визуал</b>: фото товара, инфографика с ценой и условиями, сравнение с конкурентами</li>
+            <li><b>Несколько версий</b> для А/Б-теста</li>
+            <li><b>Адаптация под целевое действие</b>: формат для мессенджера отличается от формата для лендинга</li>
+          </ul>
+          <p class="term">Результат этапа: покупатель видит рекламу про его ситуацию и ведёт в удобное место для диалога.</p>
+        </div>
+      </article>
+
+      <article class="svc">
+        <span class="stage ed">Этап 4</span>
+        <h3>Настройка и запуск рекламных кампаний</h3>
+        <div class="pav">
+          <div class="pav-row"><span class="tag">Что делаем</span><p>Настраиваем кампании в Авито ADS под каждый сегмент и каждое целевое действие, выводим трафик в мессенджеры и на сайт, подключаем ретаргетинг и ограничиваем частоту показов.</p></div>
+          <div class="pav-row"><span class="tag">Чем сильнее</span><p>UTM-метки под каждую аудиторию показывают, откуда пришёл каждый лид. Лимит частоты не даёт одному человеку увидеть рекламу 50 раз подряд.</p></div>
+          <div class="pav-row"><span class="tag win">Что это даёт бизнесу</span>
+            <ul class="checks">
+              <li>трафик идёт туда, где менеджер быстро его обработает и закроет в сделку</li>
+              <li>в диалог с менеджером или ботом можно попасть в один клик</li>
+              <li>вы видите источник каждого лида</li>
+              <li>возвращаем тех, кто видел объявление или заходил на сайт и не оставил заявку</li>
+            </ul>
+          </div>
+        </div>
+        <button type="button" class="btn-more" aria-expanded="false">Подробнее</button>
+        <div class="more">
+          <h4>Что входит:</h4>
+          <ul>
+            <li><b>Кампании в Авито ADS</b> под каждый сегмент и цель</li>
+            <li><b>Вывод в мессенджеры</b>: Telegram, WhatsApp, MAX</li>
+            <li><b>Вывод на сайт или лендинг</b> с UTM-метками под каждую аудиторию</li>
+            <li><b>Ретаргетинг</b>: тем, кто видел объявление или заходил на сайт</li>
+            <li><b>Контроль частоты показов</b>: разумный лимит, чтобы не раздражать аудиторию</li>
+          </ul>
+          <p class="term">Результат этапа: кампании запущены по всем сегментам с правильными целями.</p>
+        </div>
+      </article>
+
+      <article class="svc">
+        <span class="stage ed">Этап 5</span>
+        <h3>Оптимизация и управление бюджетом</h3>
+        <div class="pav">
+          <div class="pav-row"><span class="tag">Что делаем</span><p>Каждый день следим за CTR, стоимостью клика и стоимостью обращения по каждой аудитории и креативу, перераспределяем бюджет и обновляем креативы.</p></div>
+          <div class="pav-row"><span class="tag">Чем сильнее</span><p>Отключаем то, что не конвертирует, и масштабируем то, что даёт дешёвые целевые обращения. Расширяем аудитории по мере накопления данных.</p></div>
+          <div class="pav-row"><span class="tag win">Что это даёт бизнесу</span>
+            <ul class="checks">
+              <li>бюджет работает на результат, а не размазывается по нецелевым показам</li>
+              <li>свежие креативы поддерживают высокий CTR и низкую стоимость клика</li>
+              <li>еженедельные отчёты: охват, клики, обращения, стоимость лида, расход</li>
+              <li>с каждой неделей система становится точнее и эффективнее</li>
+            </ul>
+          </div>
+        </div>
+        <button type="button" class="btn-more" aria-expanded="false">Подробнее</button>
+        <div class="more">
+          <h4>Что входит:</h4>
+          <ul>
+            <li><b>Ежедневный мониторинг</b> CTR, стоимости клика и обращения</li>
+            <li><b>Перераспределение бюджета</b> в пользу работающих связок</li>
+            <li><b>Обновление креативов</b> по мере выгорания аудитории</li>
+            <li><b>Расширение аудиторий</b> по мере накопления данных</li>
+            <li><b>Еженедельные отчёты</b> по каждой кампании и аудитории</li>
+          </ul>
+          <p class="term">Результат этапа: бюджет работает на результат, система с каждой неделей становится точнее.</p>
+        </div>
+      </article>
+    </div>
+    </div>
+  </div>
+</section>
+
+<section class="days-sec" id="days">
+  <div class="wrap">
+    <div class="sec-head"><h2>Что произойдёт за 21 день</h2></div>
+    <div class="phases" id="phases-list">
+      <article class="phase">
+        <h3>Дни 1-5: анализ и запуск</h3>
+        <ul class="checks">
+          <li>Считаем спрос на вашу услугу и собираем запросы покупателей</li>
+          <li>Разбираем конкурентов и находим, где они слабее</li>
+          <li>Запускаем 5+ карточек с разными фото, офферами и заголовками</li>
+          <li>Вы получаете понятную картину ниши ещё до основных трат на рекламу</li>
+        </ul>
+      </article>
+      <article class="phase">
+        <h3>Дни 6-15: тест и отбор</h3>
+        <ul class="checks">
+          <li>Карточки, не набравшие порог просмотров, уходят в архив, на их место выходят новые</li>
+          <li>На прошедших порог включаются автоматические ставки</li>
+          <li>Идут первые квалифицированные заявки</li>
+          <li>Вы видите в отчёте, какие карточки и офферы работают</li>
+        </ul>
+      </article>
+      <article class="phase last">
+        <h3>Дни 16-21: итог и решение</h3>
+        <ul class="checks">
+          <li>Итоговый отчёт: заявки, стоимость заявки, расход бюджета</li>
+          <li>Набрано 10 квалифицированных заявок: вы оплачиваете первый месяц ведения, мы продолжаем и масштабируем</li>
+          <li>Не набрано: вы ничего не платите за работу и забираете все настройки себе</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="guar" id="guarantee">
+  <div class="wrap">
+    <div class="guar-in">
+      <h2>Гарантия</h2>
+      <p class="guar-big">Настройка бесплатно. Если за 21 день мы не приведём 10 квалифицированных заявок, вы ничего не платите за нашу работу и забираете все настройки себе.</p>
+      <p class="guar-note">Критерии заявки согласуем заранее и зафиксируем в договоре. Все цифры вы увидите в статистике Авито и в отчёте, без обещаний и «подождите ещё».</p>
+      <div class="guar-boxes" id="guar-boxes">
+      <div class="guar-box">
+        <h3>Как устроена оплата</h3>
+        <ul>
+          <li>настройка и запуск: 0 ₽</li>
+          <li>рекламный бюджет вы вносите напрямую в Авито, мы им не распоряжаемся. Он тратится на показы и в гарантию не входит</li>
+          <li>набрано 10 квалифицированных заявок: 25 000 ₽ за первый месяц ведения, дальше работаем на тех же условиях</li>
+          <li>не набрано: 0 ₽ за работу, все настройки и объявления остаются у вас</li>
+        </ul>
+      </div>
+            <div class="guar-box">
+        <h3>Что нужно от вас, чтобы гарантия действовала</h3>
+        <ul>
+          <li>отвечать на заявки в течение 15-30 минут в рабочее время</li>
+          <li>дать доступ к аккаунту Авито и аналитике</li>
+          <li>согласовывать объявления в течение 48 часов</li>
+          <li>внести рекомендованный рекламный бюджет в Авито</li>
+          <li>разрешить использовать результат как кейс (название компании по желанию скрываем)</li>
+        </ul>
+      </div>
+      </div>
+      <p class="fine">Срок 21 день отсчитывается от даты запуска рекламы. Условия фиксируются в договоре.</p>
+    </div>
+  </div>
+</section>
+
+
+<section id="price">
+  <div class="wrap">
+    <div class="sec-head"><h2>Стоимость</h2></div>
+    <div class="prices" id="prices-list">
+      <div class="price">
+        <p class="ptitle ed">Запуск и настройка (разово)</p>
+        <p class="pnum ed">0 ₽</p>
+        <p class="pnote ed">Аналитика, семантика, запуск карточек и кампаний. Бесплатно, пока нет результата.</p>
+      </div>
+      <div class="price">
+        <p class="ptitle ed">Ведение (в месяц)</p>
+        <p class="pnum ed">25 000 ₽/мес</p>
+        <p class="pnote ed">Платите, только если за 21 день набрано 10 квалифицированных заявок. А/Б-тесты, ставки, оптимизация и еженедельные отчёты.</p>
+      </div>
+      <div class="price">
+        <p class="ptitle ed">Рекламный бюджет Авито</p>
+        <p class="pnum ed">Под вашу нишу</p>
+        <p class="pnote ed">Сумму рассчитаем до старта, чтобы вы знали её заранее. Оплачивается напрямую на ваш аккаунт Авито, деньги остаются у вас.</p>
+      </div>
+    </div>
+      </div>
+</section>
+
+<section class="next-sec" id="next">
+  <div class="wrap">
+    <div class="sec-head"><h2>Следующий шаг</h2></div>
+    <ol class="steps">
+      <li><span class="n">1</span><span class="ed">Направьте реквизиты и доступы</span></li>
+      <li><span class="n">2</span><span class="ed">Согласуем договор и критерии заявки</span></li>
+      <li><span class="n">3</span><span class="ed">Запускаем рекламу и начинаем отсчёт 21 дня</span></li>
+    </ol>
+    <a class="btn-main" data-contact href="https://t.me/egornaz" target="_blank" rel="noopener"><span class="ed">Написать в Telegram</span></a>
+    <p class="contact ed">Telegram: @egornaz</p>
+  </div>
+</section>
+
+</div>
+
+<script id="pg-js">
+(function () {
+  var FONTS = 'https://fonts.googleapis.com/css2?family=Manrope:wght@400..800&family=Playfair+Display:wght@500..700&display=swap';
+  var DRAFT_KEY = 'kp-avito-draft-v1';
+  var EDIT_SEL = 'h1,h2,h3,h4,p,li,.ed';
+  var app = document.getElementById('app');
+  var root = document.documentElement;
+  var msgTimer = null, saveTimer = null;
+
+  function say(t) {
+    var m = document.getElementById('tbmsg');
+    if (!m) return;
+    m.textContent = t;
+    clearTimeout(msgTimer);
+    msgTimer = setTimeout(function () { m.textContent = ''; }, 3500);
+  }
+
+  function syncNav() {
+    document.querySelectorAll('.nav [data-scroll]').forEach(function (b) {
+      var t = document.getElementById(b.getAttribute('data-scroll'));
+      b.hidden = !!(t && t.classList.contains('is-hidden'));
+    });
+  }
+
+  function renumber(list) {
+    list.querySelectorAll(':scope > li > .n').forEach(function (n, i) { n.textContent = String(i + 1); });
+  }
+
+  function newLi(src, list) {
+    var li = document.createElement('li');
+    if (list.classList.contains('steps')) {
+      li.innerHTML = '<span class="n">1</span><span class="ed">Новый шаг</span>';
+    } else if (src && src.querySelector(':scope > b')) {
+      li.innerHTML = '<b>Пункт</b>: описание';
+    } else {
+      li.textContent = 'Новый пункт';
+    }
+    return li;
+  }
+
+  function focusLi(li) {
+    var host = li.querySelector('.ed, b');
+    var node = host || li.firstChild;
+    if (!node) return;
+    try {
+      var rng = document.createRange();
+      rng.selectNodeContents(node);
+      var sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(rng);
+      (li.querySelector('.ed') || li).focus();
+    } catch (e) {}
+  }
+
+  function addLi(list, after) {
+    var src = after || list.querySelector(':scope > li');
+    var li = newLi(src, list);
+    if (after) after.insertAdjacentElement('afterend', li); else list.appendChild(li);
+    if (list.classList.contains('steps')) renumber(list);
+    decorate();
+    focusLi(li);
+    scheduleDraft();
+  }
+
+  function isEditing() { return root.classList.contains('editing'); }
+
+  function decorate() {
+    app.querySelectorAll('.ctl, .li-x, .li-add').forEach(function (r) { r.remove(); });
+    app.querySelectorAll('[data-hide], [data-rm]').forEach(function (el) {
+      var c = document.createElement('div');
+      c.className = 'ctl';
+      if (el.hasAttribute('data-hide')) {
+        var h = document.createElement('button');
+        h.type = 'button'; h.className = 'hide-btn';
+        h.textContent = el.classList.contains('is-hidden') ? 'Показать' : 'Скрыть';
+        h.setAttribute('aria-label', el.classList.contains('is-hidden') ? 'Показать блок' : 'Скрыть блок');
+        c.appendChild(h);
+      }
+      if (el.hasAttribute('data-rm')) {
+        var b = document.createElement('button');
+        b.type = 'button'; b.className = 'rm';
+        b.setAttribute('aria-label', 'Удалить блок'); b.textContent = '×';
+        c.appendChild(b);
+      }
+      el.appendChild(c);
+    });
+    app.querySelectorAll('ul, ol').forEach(function (list) {
+      if (list.closest('nav')) return;
+      list.querySelectorAll(':scope > li').forEach(function (li) {
+        var x = document.createElement('button');
+        x.type = 'button'; x.className = 'li-x';
+        x.setAttribute('contenteditable', 'false');
+        x.setAttribute('aria-label', 'Удалить пункт'); x.textContent = '×';
+        li.appendChild(x);
+      });
+      var a = document.createElement('button');
+      a.type = 'button'; a.className = 'li-add';
+      a.textContent = '＋ пункт';
+      list.insertAdjacentElement('afterend', a);
+    });
+    app.querySelectorAll(EDIT_SEL).forEach(function (e) {
+      if (e.closest('.ctl, .nav, template')) return;
+      e.setAttribute('contenteditable', 'true');
+      e.setAttribute('spellcheck', 'false');
+    });
+  }
+
+  function undecorate() {
+    app.querySelectorAll('.ctl, .li-x, .li-add').forEach(function (r) { r.remove(); });
+    app.querySelectorAll('[contenteditable]').forEach(function (e) {
+      e.removeAttribute('contenteditable'); e.removeAttribute('spellcheck');
+    });
+  }
+
+  function readDraft() {
+    try { return localStorage.getItem(DRAFT_KEY); } catch (e) { return null; }
+  }
+
+  function setEdit(on) {
+    if (on) {
+      root.classList.add('editing');
+      decorate();
+      var d = document.getElementById('btnDraft');
+      if (d) d.style.display = readDraft() ? '' : 'none';
+    } else {
+      root.classList.remove('editing');
+      undecorate();
+      try { history.replaceState(null, '', location.pathname + location.search); } catch (e) { try { location.hash = ''; } catch (e2) {} }
+    }
+  }
+
+  function cleanApp() {
+    var c = app.cloneNode(true);
+    c.querySelectorAll('[contenteditable]').forEach(function (e) { e.removeAttribute('contenteditable'); e.removeAttribute('spellcheck'); });
+    c.querySelectorAll('.ctl, .li-x, .li-add').forEach(function (e) { e.remove(); });
+    c.querySelectorAll('.more.open').forEach(function (e) { e.classList.remove('open'); });
+    c.querySelectorAll('.btn-more').forEach(function (b) { b.setAttribute('aria-expanded', 'false'); b.textContent = 'Подробнее'; });
+    return c.innerHTML;
+  }
+
+  function fullDoc() {
+    var css = document.getElementById('pg-css').textContent;
+    var js = document.getElementById('pg-js').textContent;
+    var inp = document.getElementById('contact');
+    if (inp) inp.setAttribute('value', inp.value);
+    var tb = document.getElementById('tb').outerHTML;
+    return '<!doctype html>\n<html lang="ru"><head><meta charset="utf-8">' +
+      '<meta name="viewport" content="width=device-width,initial-scale=1">' +
+      '<title>КП Авито</title>' +
+      '<link rel="stylesheet" href="' + FONTS + '">' +
+      '<style id="pg-css">' + css + '</style></head><body>' +
+      '<div id="app">' + cleanApp() + '</div>' + tb +
+      '<script id="pg-js">' + js + '<' + '/script></body></html>';
+  }
+
+  async function download() {
+    var html = fullDoc();
+    var dl = null;
+    try { dl = (window.claude && window.claude.use) ? await window.claude.use('downloads') : null; } catch (e) { dl = null; }
+    if (dl) {
+      try { await dl.save({ filename: 'kp-avito.html', data: html }); say('Файл сохранён'); }
+      catch (e) { if (!e || e.code !== 'declined') say('Не удалось сохранить файл'); }
+      return;
+    }
+    try {
+      var blob = new Blob([html], { type: 'text/html' });
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob); a.download = 'kp-avito.html';
+      document.body.appendChild(a); a.click(); a.remove();
+      say('Файл скачан');
+    } catch (e) { say('Не удалось скачать файл'); }
+  }
+
+  function scheduleDraft() {
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(function () {
+      try { localStorage.setItem(DRAFT_KEY, cleanApp()); } catch (e) {}
+    }, 600);
+  }
+
+  function contactHref(v) {
+    v = (v || '').trim();
+    if (!v) return '#';
+    if (v.charAt(0) === '@') return 'https://t.me/' + v.slice(1);
+    if (/^[+\d][\d\s()\-]{5,}$/.test(v)) return 'tel:' + v.replace(/[^\d+]/g, '');
+    if (/^(https?:|tel:|mailto:)/i.test(v)) return v;
+    return 'https://' + v;
+  }
+
+  document.addEventListener('click', function (ev) {
+    var t = ev.target;
+    var more = t.closest('.btn-more');
+    if (more && app.contains(more)) {
+      var box = more.closest('.svc').querySelector('.more');
+      var open = box.classList.toggle('open');
+      more.setAttribute('aria-expanded', open ? 'true' : 'false');
+      more.textContent = open ? 'Свернуть' : 'Подробнее';
+      return;
+    }
+    var sc = t.closest('[data-scroll]');
+    if (sc) {
+      var target = document.getElementById(sc.getAttribute('data-scroll'));
+      if (target) { var y = target.getBoundingClientRect().top + window.pageYOffset - 52; window.scrollTo({ top: y, behavior: 'smooth' }); }
+      return;
+    }
+    var lx = t.closest('.li-x');
+    if (lx) {
+      var li0 = lx.closest('li');
+      if (li0) { var par = li0.parentNode; li0.remove(); if (par.classList.contains('steps')) renumber(par); scheduleDraft(); }
+      return;
+    }
+    var la = t.closest('.li-add');
+    if (la) {
+      var list0 = la.previousElementSibling;
+      if (list0 && list0.matches('ul, ol')) addLi(list0, null);
+      return;
+    }
+    var hd = t.closest('.hide-btn');
+    if (hd) {
+      var hb = hd.closest('[data-hide]');
+      if (hb) { hb.classList.toggle('is-hidden'); decorate(); syncNav(); scheduleDraft(); }
+      return;
+    }
+    var rm = t.closest('.rm');
+    if (rm) { var blk = rm.closest('[data-rm]'); if (blk) { blk.remove(); scheduleDraft(); } return; }
+    var add = t.closest('.add');
+    if (add) {
+      var tpl = document.getElementById(add.getAttribute('data-tpl'));
+      var list = document.getElementById(add.getAttribute('data-into'));
+      if (tpl && list) { list.appendChild(tpl.content.firstElementChild.cloneNode(true)); decorate(); scheduleDraft(); }
+      return;
+    }
+    var act = t.closest('[data-act]');
+    if (act) {
+      var a = act.getAttribute('data-act');
+      if (a === 'download') download();
+      else if (a === 'exit') setEdit(false);
+      else if (a === 'draft') {
+        var d = readDraft();
+        if (d) { app.innerHTML = d; decorate(); syncNav(); say('Черновик возвращён'); }
+      }
+      return;
+    }
+    var link = t.closest('a[data-contact]');
+    if (link && (isEditing() || link.getAttribute('href') === '#')) ev.preventDefault();
+  });
+
+  document.addEventListener('input', function (ev) {
+    if (ev.target && ev.target.id === 'contact') {
+      var h = contactHref(ev.target.value);
+      app.querySelectorAll('a[data-contact]').forEach(function (a) { a.setAttribute('href', h); });
+      scheduleDraft();
+      return;
+    }
+    if (isEditing() && app.contains(ev.target)) scheduleDraft();
+  });
+
+  document.addEventListener('keydown', function (ev) {
+    if (!isEditing() || ev.key !== 'Enter' || ev.shiftKey) return;
+    var t = ev.target;
+    if (!t || !t.isContentEditable) return;
+    var li = t.closest('li');
+    if (li && li.parentNode && li.parentNode.matches('ul, ol')) { ev.preventDefault(); addLi(li.parentNode, li); return; }
+    ev.preventDefault();
+  });
+
+  document.addEventListener('paste', function (ev) {
+    var t = ev.target;
+    if (!isEditing() || !t || !t.isContentEditable) return;
+    ev.preventDefault();
+    var text = (ev.clipboardData || window.clipboardData).getData('text');
+    try { document.execCommand('insertText', false, text); } catch (e) {}
+  });
+
+  syncNav();
+})();
+</script>
+
+</body></html>
