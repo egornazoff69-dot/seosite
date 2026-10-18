@@ -20,7 +20,7 @@
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Service", "name": "Продвижение бизнеса в Яндекс Картах и 2ГИС", "url": "https://nazarovmarketing.ru/uslugi/yandex-karty/", "description": "Продвижение бизнеса в Яндекс Картах и 2ГИС: прайс под запросы района, фото, отзывы, 9 замеров позиций в неделю. Аудит карточки за 790 ₽ за 24 часа.", "areaServed": {"@type": "Country", "name": "Россия"}, "provider": {"@type": "Person", "@id": "https://nazarovmarketing.ru/#egor", "name": "Егор Назаров", "url": "https://nazarovmarketing.ru/about/", "jobTitle": "Маркетолог", "sameAs": ["https://t.me/egornazarovmarketing"]}, "offers": {"@type": "Offer", "price": "27500", "priceCurrency": "RUB", "description": "Ведение одной точки, за месяц"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://nazarovmarketing.ru/"}, {"@type": "ListItem", "position": 2, "name": "Услуги", "item": "https://nazarovmarketing.ru/uslugi/"}, {"@type": "ListItem", "position": 3, "name": "Яндекс Карты и 2ГИС"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Карточка у нас уже есть, за что платить?", "acceptedAnswer": {"@type": "Answer", "text": "Карточка и видимость по услугам — разные вещи. У коворкинга из кейса был рейтинг 5.0 и 118 отзывов, но по своим запросам он стоял на 19-м месте. Платите за то, чтобы карточку находили по услугам, а не только по названию."}}, {"@type": "Question", "name": "Вы гарантируете первое место?", "acceptedAnswer": {"@type": "Answer", "text": "Нет, и вам стоит насторожиться, если кто-то гарантирует. Выдача на картах зависит от точки, где стоит человек, и меняется каждый день. Я гарантирую рост позиций по согласованным запросам за 3 месяца — если его нет, следующий месяц ведения бесплатно. Звонки и выручку не гарантирую, но считаю их в отчёте."}}, {"@type": "Question", "name": "Придётся ли отдельно платить Яндексу?", "acceptedAnswer": {"@type": "Answer", "text": "Может понадобиться. Сторис, новости и фирменное оформление в Яндекс Картах видны только на платном тарифе Яндекс Бизнеса. Тариф «Расширенный» стоит 10 080 ₽ за 90 дней. Я заранее включаю его в смету отдельной строкой, чтобы не было сюрпризов."}}, {"@type": "Question", "name": "Вы заберёте нашу карточку?", "acceptedAnswer": {"@type": "Answer", "text": "Нет. Работаем через доступ представителя в Яндекс Бизнесе и 2ГИС, пароль владельца не нужен. Карточка, фото и тексты остаются у вас. Расторгнуть договор можно без штрафов, предупредив за 14 дней."}}, {"@type": "Question", "name": "Мне придётся каждую неделю писать новости и отвечать на отзывы?", "acceptedAnswer": {"@type": "Answer", "text": "Нет. Тексты, фото, сторис и ответы на отзывы готовит команда, вы только согласуете. Для клиник медицинские формулировки согласуем до публикации."}}, {"@type": "Question", "name": "У меня на телефоне позиции другие. Как вы их считаете?", "acceptedAnswer": {"@type": "Answer", "text": "Выдача на картах персональная и зависит от того, где стоит человек. Поэтому раз в неделю делаем 9 замеров — 3 запроса из 3 точек района — и сравниваем со стартом. Таблица замеров доступна вам в любой момент."}}, {"@type": "Question", "name": "Как вы работаете, если я в другом городе?", "acceptedAnswer": {"@type": "Answer", "text": "Удалённо. Созвоны в Телемосте или Zoom, переписка в Telegram. Договор с самозанятым, каждый месяц — акт и чек через «Мой налог»."}}]}]}</script>
 <style>:root{--bg:#F8F7F0;--a1:#9DF7FF;--a2:#2B59FF;--text:#2b2b2b;--sec:#666;--white:#fff;--line:#E6E3D8;--shadow:0 4px 20px rgba(0,0,0,.07);--r:16px;--font:'Montserrat',system-ui,-apple-system,sans-serif}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -249,6 +249,29 @@ a{color:inherit}
 .calc__ok{color:#1a7f37;font-weight:600}.calc__no{color:#b3261e;font-weight:600}.calc__f{font-size:12px;color:var(--sec)}
 @media(max-width:640px){.calc__grid,.calc__nums{grid-template-columns:1fr}}
 .prose a.btn{text-decoration:none}.prose a.btn--main{color:#fff}.prose a.btn--ghost{color:var(--text)}.prose a.btn--main:hover{color:#fff}
+/* типографика: Playfair Display для заголовков */
+h1,h2,.hero h1,.bhero h1,.quiz h1,.qmodal__t,.cta-box__title{font-family:'Playfair Display',Georgia,serif;letter-spacing:-.01em}
+.hero h1,.bhero h1{font-weight:800}
+/* цветные плашки в тексте */
+.prose h2{background:linear-gradient(90deg,rgba(157,247,255,.65),rgba(157,247,255,0) 85%);border-left:5px solid var(--a2);padding:10px 16px;border-radius:0 14px 14px 0;margin:44px 0 18px}
+.prose h3{display:inline-block;background:rgba(43,89,255,.09);color:#1b3fd1;padding:5px 14px;border-radius:999px;font-size:1.02rem;margin:26px 0 10px}
+.prose strong{background:linear-gradient(transparent 58%,rgba(157,247,255,.85) 58%);padding:0 2px}
+.prose em{color:#1b3fd1;font-style:italic}
+.prose u{text-decoration:underline;text-decoration-color:var(--a2);text-decoration-thickness:3px;text-underline-offset:4px}
+.prose mark.hl{background:linear-gradient(135deg,#9DF7FF,#bfe3ff);color:var(--text);padding:2px 8px;border-radius:8px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.prose blockquote{background:linear-gradient(135deg,rgba(43,89,255,.1),rgba(157,247,255,.35));border-left:5px solid var(--a2);font-style:italic;font-size:1.05rem}
+.plate{position:relative;border-radius:16px;padding:26px 22px 16px;margin:26px 0;border:1.5px solid transparent}
+.plate::before{content:attr(data-label);position:absolute;top:-11px;left:18px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 12px;border-radius:999px}
+.plate p:last-child{margin-bottom:0}
+.plate--key{background:rgba(43,89,255,.09);border-color:rgba(43,89,255,.3)}.plate--key::before{background:var(--a2);color:#fff}
+.plate--tip{background:rgba(157,247,255,.4);border-color:rgba(60,190,205,.5)}.plate--tip::before{background:#9DF7FF;color:var(--text)}
+.plate--warn{background:#2b2b2b;color:#fff}.plate--warn::before{background:#fff;color:#2b2b2b}.plate--warn strong{background:none;color:#9DF7FF}
+.plate--fact{background:#fff;border-color:var(--a2)}.plate--fact::before{background:var(--text);color:#fff}
+.prose th{background:rgba(43,89,255,.1)}
+.cta-box--mid .cta-box__title{font-size:1.5rem}
+.prose .cta-box a.btn--main{color:var(--a2)}.prose .cta-box a.btn--main:hover{color:var(--a2)}
+.prose .cta-box a.btn--ghost{color:#fff}
+.hero h1,.bhero h1{font-weight:700;font-size:clamp(1.8rem,4vw,2.5rem)}
 </style>
 </head>
 <body class="kind-service">
@@ -438,7 +461,7 @@ document.getElementById("qsend").onclick=function(){
 show(0);window.quizReset=function(){a={};document.getElementById("qform").reset();var b=document.getElementById("qsend");b.disabled=false;b.textContent="Отправить";show(0)};
 })();
 </script>
-</div></div><div class="qmodal" id="mmodal" hidden><div class="qmodal__box"><button type="button" class="qmodal__x" id="mclose" aria-label="Закрыть">×</button><h2 class="qmodal__t">Чек-лист карточки: 15 пунктов</h2><p class="quiz__sub">Куда прислать? Чек-лист откроется сразу, а мне останется ваш контакт, чтобы ответить, если будут вопросы.</p><input class="qin" id="mname" placeholder="Как вас зовут" autocomplete="name"><input class="qin" id="mcontact" placeholder="Telegram (@ник) или телефон" autocomplete="tel"><input type="text" id="mhp" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true"><button type="button" class="btn btn--main" id="msend">Открыть чек-лист</button><p class="qnote">Контакт использую только чтобы ответить вам.</p><p class="qerr" id="merr"></p></div></div><script>
+</div></div><script>
 (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();
 for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}
 k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
