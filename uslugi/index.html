@@ -190,22 +190,38 @@ a{color:inherit}
 .cta-box .btn--main{background:#fff;color:var(--a2)}
 @media(max-width:800px){.cta-box{grid-template-columns:1fr;padding:24px}.cta-box__shots{height:210px}}
 .who{display:flex;align-items:center;gap:16px;margin:0 0 22px}.who img{width:88px;height:88px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 3px var(--a1)}.who p{margin:0;line-height:1.4}
+/* квиз */
+.quiz{max-width:640px;margin:8px auto 40px}
+.quiz h1{font-size:clamp(1.6rem,4vw,2.2rem);line-height:1.2;margin:0 0 8px}
+.quiz__sub{color:#555;margin:0 0 18px}
+.quiz__bar{height:6px;background:#e6e3d8;border-radius:999px;overflow:hidden;margin-bottom:22px}
+.quiz__bar span{display:block;height:100%;width:0;background:var(--a2);transition:width .3s}
+.qstep{display:none;background:var(--white);border-radius:20px;padding:28px;box-shadow:var(--shadow)}
+.qstep h2{margin:0 0 16px;font-size:1.3rem}
+.qopts{display:grid;gap:10px}
+.qopts button{font:inherit;text-align:left;padding:16px 18px;border-radius:14px;border:1.5px solid #d8d6c8;background:#fff;cursor:pointer;font-weight:600;transition:border-color .15s,transform .15s}
+.qopts button:hover{border-color:var(--a2);transform:translateX(3px)}
+.qin{display:block;width:100%;font:inherit;padding:15px 16px;border-radius:14px;border:1.5px solid #d8d6c8;margin-bottom:12px}
+.qin:focus{outline:none;border-color:var(--a2)}
+.qstep .btn{margin-top:4px}.qghost{border-color:var(--text)!important;color:var(--text)!important;margin-left:6px}
+.qnote{font-size:12px;color:var(--sec);margin:12px 0 0}.qerr{color:#c0392b;font-size:14px;margin:8px 0 0}
+.qback{font:inherit;border:0;background:none;color:var(--sec);cursor:pointer;margin-top:14px}
 </style>
 </head>
 <body class="kind-page">
-<header class="top"><div class="top__in"><a class="logo" href="/">nazarov.marketing</a><nav class="top__nav"><a href="/uslugi/yandex-karty/">Яндекс Карты и 2ГИС</a><a href="/uslugi/avito/">Авито</a><a href="/uslugi/sajt-i-direkt/">Сайт и Директ</a><a href="/blog/">Блог</a><a href="/cases.html">Кейсы</a></nav><a class="btn btn--sm" href="https://t.me/egornaz" data-goal="tg_dm">Написать в Telegram</a></div></header><a class="tg-float" href="https://t.me/egornaz" data-goal="tg_dm" aria-label="Написать в Telegram">Написать в Telegram</a>
+<header class="top"><div class="top__in"><a class="logo" href="/">nazarov.marketing</a><nav class="top__nav"><a href="/uslugi/yandex-karty/">Яндекс Карты и 2ГИС</a><a href="/uslugi/avito/">Авито</a><a href="/uslugi/sajt-i-direkt/">Сайт и Директ</a><a href="/blog/">Блог</a><a href="/kejsy/">Кейсы</a></nav><a class="btn btn--sm" href="/razbor/" data-goal="quiz_open">Получить разбор</a></div></header><a class="tg-float" href="https://t.me/egornaz" data-goal="tg_dm" aria-label="Написать в Telegram">Написать в Telegram</a>
 <main class="page">
 <nav class="crumbs" aria-label="Хлебные крошки"><a href="/">Главная</a><i>/</i><span>Услуги</span></nav>
 <header class="hero">
 <h1>Услуги для локального бизнеса</h1>
 <p class="lead">Три способа получать клиентов из интернета. Если не знаете, с чего начать, напишите в Telegram: подскажу по вашей нише и городу.</p>
 </header>
-<div class="post-list"><a class="post-card" href="/uslugi/yandex-karty/"><h2>Яндекс Карты и 2ГИС</h2><p>Продвижение бизнеса в Яндекс Картах и 2ГИС: прайс под запросы района, фото, отзывы, 9 замеров позиций в неделю. Аудит карточки за 790 ₽ за 24 часа.</p></a><a class="post-card" href="/uslugi/avito/"><h2>Авито</h2><p>Продвижение на Авито под ключ для услуг: объявления, ставки, учёт заявок. Не придут 10 квалифицированных заявок за 30 дней — за работу не платите.</p></a><a class="post-card" href="/uslugi/sajt-i-direkt/"><h2>Сайт и Директ</h2><p>Лендинг и Яндекс Директ под ключ для клиник, салонов, автосервисов: исследование аудитории, сайт под одну услугу, реклама на горячий спрос, отчёт каждую неделю.</p></a></div>
+<div class="post-list"><a class="post-card" href="/uslugi/yandex-karty/"><h2>Яндекс Карты и 2ГИС</h2><p>Продвижение бизнеса в Яндекс Картах и 2ГИС: прайс под запросы района, фото, отзывы, 9 замеров позиций в неделю. Аудит карточки за 790 ₽ за 24 часа.</p></a><a class="post-card" href="/uslugi/avito/"><h2>Авито</h2><p>Продвижение услуг на Авито под ключ. Запуск бесплатный, ведение оплачивается только при 10 квалифицированных заявках за 30 дней. Условия по пунктам.</p></a><a class="post-card" href="/uslugi/sajt-i-direkt/"><h2>Сайт и Директ</h2><p>Лендинг и Яндекс Директ под ключ для клиник, салонов, автосервисов: исследование аудитории, сайт под одну услугу, реклама на горячий спрос, отчёт каждую неделю.</p></a></div>
 
-<div class="cta-box"><div class="cta-box__text"><p class="cta-box__title">Разберу вашу ситуацию в Telegram</p><p>Напишите, чем занимаетесь и в каком городе. Отвечу лично, без менеджеров и шаблонов.</p><div class="cta-box__btns"><a class="btn btn--main" href="https://t.me/egornaz" data-goal="tg_dm">Написать в Telegram</a><a class="btn btn--ghost" href="https://t.me/egornazarovmarketing" data-goal="tg_channel">Подписаться на канал</a></div></div><div class="cta-box__shots" aria-hidden="true"><img class="s1" src="/img/lk/lk1.jpg" alt="" loading="lazy"><img class="s2" src="/img/lk/lk2.jpg" alt="" loading="lazy"><img class="s3" src="/img/lk/lk3.jpg" alt="" loading="lazy"></div></div>
+<div class="cta-box"><div class="cta-box__text"><p class="cta-box__title">Разберу вашу ситуацию бесплатно</p><p>Ответьте на 5 коротких вопросов или напишите в Telegram. Отвечу лично, без менеджеров и шаблонов.</p><div class="cta-box__btns"><a class="btn btn--main" href="/razbor/" data-goal="quiz_open">Получить разбор за 1 минуту</a><a class="btn btn--ghost" href="https://t.me/egornaz" data-goal="tg_dm">Написать в Telegram</a></div></div><div class="cta-box__shots" aria-hidden="true"><img class="s1" src="/img/lk/lk1.jpg" alt="" loading="lazy"><img class="s2" src="/img/lk/lk2.jpg" alt="" loading="lazy"><img class="s3" src="/img/lk/lk3.jpg" alt="" loading="lazy"></div></div>
 
 </main>
-<footer class="foot"><div class="foot__in"><div><a class="logo" href="/">nazarov.marketing</a><p>Егор Назаров, маркетолог. Продвижение локального бизнеса в Яндекс Картах и 2ГИС, заявки с Авито, сайты и Яндекс Директ. Работаю удалённо по всей России. Самозанятый: договор, акт и чек через «Мой налог».</p></div><nav><a href="/uslugi/yandex-karty/">Яндекс Карты и 2ГИС</a><a href="/uslugi/avito/">Авито</a><a href="/uslugi/sajt-i-direkt/">Сайт и Директ</a><a href="/blog/">Блог</a><a href="/cases.html">Кейсы</a><a href="/about/">Обо мне</a></nav><div><a class="btn btn--main" href="https://t.me/egornaz" data-goal="tg_dm">Написать в Telegram</a><a class="foot__ch" href="https://t.me/egornazarovmarketing" data-goal="tg_channel">Канал: Клиенты из Яндекс Карт и 2ГИС</a></div></div><p class="foot__copy">© 2026 nazarov.marketing</p></footer>
+<footer class="foot"><div class="foot__in"><div><a class="logo" href="/">nazarov.marketing</a><p>Егор Назаров, маркетолог. Продвижение локального бизнеса в Яндекс Картах и 2ГИС, заявки с Авито, сайты и Яндекс Директ. Работаю удалённо по всей России. Самозанятый: договор, акт и чек через «Мой налог».</p></div><nav><a href="/uslugi/yandex-karty/">Яндекс Карты и 2ГИС</a><a href="/uslugi/avito/">Авито</a><a href="/uslugi/sajt-i-direkt/">Сайт и Директ</a><a href="/blog/">Блог</a><a href="/kejsy/">Кейсы</a><a href="/about/">Обо мне</a></nav><div><a class="btn btn--main" href="https://t.me/egornaz" data-goal="tg_dm">Написать в Telegram</a><a class="foot__ch" href="https://t.me/egornazarovmarketing" data-goal="tg_channel">Канал: Клиенты из Яндекс Карт и 2ГИС</a></div></div><p class="foot__copy">© 2026 nazarov.marketing</p></footer>
 <script>
 (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();
 for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}
