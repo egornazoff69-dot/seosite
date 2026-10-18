@@ -206,6 +206,30 @@ a{color:inherit}
 .qstep .btn{margin-top:4px}.qghost{border-color:var(--text)!important;color:var(--text)!important;margin-left:6px}
 .qnote{font-size:12px;color:var(--sec);margin:12px 0 0}.qerr{color:#c0392b;font-size:14px;margin:8px 0 0}
 .qback{font:inherit;border:0;background:none;color:var(--sec);cursor:pointer;margin-top:14px}
+/* попап квиза */
+.qmodal{position:fixed;inset:0;background:rgba(20,22,40,.55);backdrop-filter:blur(4px);z-index:100;display:grid;place-items:center;padding:16px;overflow:auto}
+.qmodal[hidden]{display:none}
+.qmodal__box{position:relative;background:var(--bg);border-radius:24px;padding:28px 26px 22px;max-width:620px;width:100%;max-height:92vh;overflow:auto}
+.qmodal__box .quiz{margin:0 auto}
+.qmodal__box .qstep{box-shadow:none;border:1px solid #e6e3d8}
+.qmodal__x{position:absolute;right:14px;top:10px;font-size:30px;line-height:1;border:0;background:none;cursor:pointer;color:var(--sec)}
+.quiz>h2.quiz__t{display:none}
+/* прогресс и оглавление */
+.rbar{position:fixed;left:0;top:0;height:4px;width:100%;z-index:60;background:transparent}
+.rbar span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--a1),var(--a2))}
+.toc{display:none}
+@media(min-width:1380px){
+ .toc{display:block;position:fixed;top:120px;left:max(16px,calc(50% - 425px - 270px));width:230px;font-size:14px;z-index:5}
+ .toc__head{font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--sec);margin-bottom:4px}
+ .toc__left{font-weight:700;margin-bottom:14px}
+ .toc ol{list-style:none;margin:0;padding:0;border-left:2px solid #e0ddd0}
+ .toc li{padding:7px 0 7px 14px;margin-left:-2px;border-left:2px solid transparent;transition:filter .3s,opacity .3s}
+ .toc a{text-decoration:none;color:var(--text);display:block;line-height:1.35}
+ .toc li.is-done{opacity:.45}.toc li.is-done a::before{content:"✓ ";color:var(--a2)}
+ .toc li.is-cur{border-left-color:var(--a2);font-weight:700}
+ .toc li.is-lock{filter:blur(4.5px);opacity:.7;pointer-events:none;user-select:none}
+}
+.qmodal__t{margin:0 0 6px;font-size:1.5rem;line-height:1.2;padding-right:30px}
 </style>
 </head>
 <body class="kind-page">
@@ -259,9 +283,10 @@ document.getElementById("qsend").onclick=function(){
  else{var t="Заявка с сайта\nНиша: "+a.niche+"\nГород: "+a.city+"\nЗадача: "+a.goal+"\nСейчас: "+a.now+"\nИмя: "+n+"\nКонтакт: "+c;
   goal("quiz_done");window.location.href="https://t.me/egornaz?text="+encodeURIComponent(t)}
 };
-show(0);
+show(0);window.quizReset=function(){a={};document.getElementById("qform").reset();var b=document.getElementById("qsend");b.disabled=false;b.textContent="Отправить";show(0)};
 })();
 </script>
+
 
 </div>
 
@@ -278,5 +303,36 @@ ym(107724874,'init',{ssr:true,webvisor:true,clickmap:true,referrer:document.refe
 document.addEventListener('click',function(e){var a=e.target.closest('[data-goal]');if(a&&window.ym)ym(107724874,'reachGoal',a.dataset.goal,{page:location.pathname});});
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/107724874" style="position:absolute;left:-9999px" alt=""></div></noscript>
+<script>(function(){
+// квиз в попапе
+var m=document.getElementById("qmodal");
+if(m){
+ function open(e){e&&e.preventDefault();if(window.quizReset)window.quizReset();m.hidden=false;document.body.style.overflow="hidden";try{ym(107724874,"reachGoal","quiz_open")}catch(x){}}
+ function close(){m.hidden=true;document.body.style.overflow=""}
+ document.querySelectorAll('a[data-goal="quiz_open"],a[href="/razbor/"]').forEach(function(a){a.addEventListener("click",open)});
+ document.getElementById("qclose").onclick=close;
+ m.addEventListener("click",function(e){if(e.target===m)close()});
+ document.addEventListener("keydown",function(e){if(e.key==="Escape")close()});
+}
+// прогресс чтения и оглавление
+var bar=document.getElementById("rbar"),toc=document.getElementById("toc");
+if(bar&&toc){
+ var prose=document.querySelector(".prose"),hs=[].slice.call(prose.querySelectorAll("h2")),
+  items=[].slice.call(toc.querySelectorAll("li")),total=+toc.dataset.min,left=document.getElementById("tocleft");
+ function upd(){
+  var r=prose.getBoundingClientRect(),H=window.innerHeight,start=r.top+window.scrollY,end=start+prose.offsetHeight-H*.4;
+  var p=Math.max(0,Math.min(1,(window.scrollY-start+H*.3)/(end-start)));
+  bar.style.width=(p*100)+"%";
+  var rest=Math.max(0,Math.ceil(total*(1-p)));
+  left.textContent=p>=.98?"Вы дочитали до конца":"Осталось читать ~"+rest+" мин";
+  var cur=-1;hs.forEach(function(h,k){if(h.getBoundingClientRect().top<H*.35)cur=k});
+  items.forEach(function(li,k){
+   li.className=k<cur?"is-done":k===cur?"is-cur":k<=cur+3?"is-next":"is-lock";
+  });
+ }
+ window.addEventListener("scroll",upd,{passive:true});window.addEventListener("resize",upd);upd();
+}
+})();
+</script>
 </body>
 </html>

@@ -208,13 +208,37 @@ a{color:inherit}
 .qstep .btn{margin-top:4px}.qghost{border-color:var(--text)!important;color:var(--text)!important;margin-left:6px}
 .qnote{font-size:12px;color:var(--sec);margin:12px 0 0}.qerr{color:#c0392b;font-size:14px;margin:8px 0 0}
 .qback{font:inherit;border:0;background:none;color:var(--sec);cursor:pointer;margin-top:14px}
+/* попап квиза */
+.qmodal{position:fixed;inset:0;background:rgba(20,22,40,.55);backdrop-filter:blur(4px);z-index:100;display:grid;place-items:center;padding:16px;overflow:auto}
+.qmodal[hidden]{display:none}
+.qmodal__box{position:relative;background:var(--bg);border-radius:24px;padding:28px 26px 22px;max-width:620px;width:100%;max-height:92vh;overflow:auto}
+.qmodal__box .quiz{margin:0 auto}
+.qmodal__box .qstep{box-shadow:none;border:1px solid #e6e3d8}
+.qmodal__x{position:absolute;right:14px;top:10px;font-size:30px;line-height:1;border:0;background:none;cursor:pointer;color:var(--sec)}
+.quiz>h2.quiz__t{display:none}
+/* прогресс и оглавление */
+.rbar{position:fixed;left:0;top:0;height:4px;width:100%;z-index:60;background:transparent}
+.rbar span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--a1),var(--a2))}
+.toc{display:none}
+@media(min-width:1380px){
+ .toc{display:block;position:fixed;top:120px;left:max(16px,calc(50% - 425px - 270px));width:230px;font-size:14px;z-index:5}
+ .toc__head{font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--sec);margin-bottom:4px}
+ .toc__left{font-weight:700;margin-bottom:14px}
+ .toc ol{list-style:none;margin:0;padding:0;border-left:2px solid #e0ddd0}
+ .toc li{padding:7px 0 7px 14px;margin-left:-2px;border-left:2px solid transparent;transition:filter .3s,opacity .3s}
+ .toc a{text-decoration:none;color:var(--text);display:block;line-height:1.35}
+ .toc li.is-done{opacity:.45}.toc li.is-done a::before{content:"✓ ";color:var(--a2)}
+ .toc li.is-cur{border-left-color:var(--a2);font-weight:700}
+ .toc li.is-lock{filter:blur(4.5px);opacity:.7;pointer-events:none;user-select:none}
+}
+.qmodal__t{margin:0 0 6px;font-size:1.5rem;line-height:1.2;padding-right:30px}
 </style>
 </head>
 <body class="kind-post">
 <header class="top"><div class="top__in"><a class="logo" href="/">nazarov.marketing</a><nav class="top__nav"><a href="/uslugi/yandex-karty/">Яндекс Карты и 2ГИС</a><a href="/uslugi/avito/">Авито</a><a href="/uslugi/sajt-i-direkt/">Сайт и Директ</a><a href="/blog/">Блог</a><a href="/kejsy/">Кейсы</a></nav><a class="btn btn--sm" href="/razbor/" data-goal="quiz_open">Получить разбор</a></div></header><a class="tg-float" href="https://t.me/egornaz" data-goal="tg_dm" aria-label="Написать в Telegram">Написать в Telegram</a>
 <main class="page">
 <nav class="crumbs" aria-label="Хлебные крошки"><a href="/">Главная</a><i>/</i><a href="/blog/">Блог</a><i>/</i><span>Сколько стоит продвижение в Яндекс Картах и 2ГИС: разбор по строчкам сметы</span></nav>
-<header class="hero">
+<div class="rbar"><span id="rbar"></span></div><aside class="toc" id="toc" data-min="9"><div class="toc__head">В статье</div><div class="toc__left" id="tocleft"></div><ol><li><a href="#iz-chego-skladyvaetsya-stoimost-prodvizheniya-na-kartah">Из чего складывается стоимость продвижения на картах?</a></li><li><a href="#skolko-beret-yandeks-tarify-yandeks-biznesa-i-reklama-v-kart">Сколько берёт Яндекс: тарифы Яндекс Бизнеса и реклама в Картах</a></li><li><a href="#skolko-stoit-reklama-v-2gis">Сколько стоит реклама в 2ГИС?</a></li><li><a href="#sam-frilanser-ili-agentstvo-skolko-stoit-rabota-s-kartochkoj">Сам, фрилансер или агентство: сколько стоит работа с карточкой?</a></li><li><a href="#moi-ceny-na-vedenie-smeta-po-strochkam">Мои цены на ведение: смета по строчкам</a></li><li><a href="#kogda-platnaya-reklama-v-kartah-ne-nuzhna">Когда платная реклама в Картах не нужна?</a></li><li><a href="#kejs-chto-poluchil-kovorking-za-eti-dengi">Кейс: что получил коворкинг за эти деньги</a></li><li><a href="#kak-ponyat-okupitsya-li-prodvizhenie-u-vas">Как понять, окупится ли продвижение у вас?</a></li><li><a href="#itog">Итог</a></li></ol></aside><header class="hero">
 <h1>Сколько стоит продвижение в Яндекс Картах и 2ГИС: разбор по строчкам сметы</h1>
 <p class="lead">Продвижение в Яндекс Картах оплачивается из двух кошельков: площадке (тариф Яндекс Бизнеса, реклама) и тому, кто работает с карточкой (вы сами, фрилансер или агентство). Базовая карточка в Яндексе и 2ГИС бесплатна, платные тарифы и реклама Яндекс считает индивидуально, а подрядчики берут от разовых нескольких тысяч до десятков тысяч рублей в месяц. Ниже все строки сметы, мои цены и ситуации, когда платить за рекламу рано.</p><div class="byline"><a class="byline__ava" href="/about/"><img src="/img/egor.jpg" alt="Егор Назаров"></a><div><a href="/about/"><b>Егор Назаров</b></a>, маркетолог: Яндекс Карты, 2ГИС, Авито<br><time datetime="2026-10-18">18 октября 2026</time></div></div>
 </header>
@@ -439,7 +463,52 @@ a{color:inherit}
 
 </main>
 <footer class="foot"><div class="foot__in"><div><a class="logo" href="/">nazarov.marketing</a><p>Егор Назаров, маркетолог. Продвижение локального бизнеса в Яндекс Картах и 2ГИС, заявки с Авито, сайты и Яндекс Директ. Работаю удалённо по всей России. Самозанятый: договор, акт и чек через «Мой налог».</p></div><nav><a href="/uslugi/yandex-karty/">Яндекс Карты и 2ГИС</a><a href="/uslugi/avito/">Авито</a><a href="/uslugi/sajt-i-direkt/">Сайт и Директ</a><a href="/blog/">Блог</a><a href="/kejsy/">Кейсы</a><a href="/about/">Обо мне</a></nav><div><a class="btn btn--main" href="https://t.me/egornaz" data-goal="tg_dm">Написать в Telegram</a><a class="foot__ch" href="https://t.me/egornazarovmarketing" data-goal="tg_channel">Канал: Клиенты из Яндекс Карт и 2ГИС</a></div></div><p class="foot__copy">© 2026 nazarov.marketing</p></footer>
+<div class="qmodal" id="qmodal" hidden><div class="qmodal__box"><button type="button" class="qmodal__x" id="qclose" aria-label="Закрыть">×</button><h2 class="qmodal__t">Бесплатный разбор вашей ситуации</h2><section class="quiz" id="quiz">
+<p class="quiz__sub">5 коротких вопросов. Отвечу лично в течение рабочего дня: без менеджеров и шаблонов.</p>
+<div class="quiz__bar"><span id="qbar"></span></div>
+<form id="qform" novalidate>
+<div class="qstep" data-k="niche"><h2>Чем вы занимаетесь?</h2>
+<div class="qopts"><button type="button" data-v="Клиника или стоматология">Клиника или стоматология</button><button type="button" data-v="Салон красоты, барбершоп">Салон красоты, барбершоп</button><button type="button" data-v="Автосервис, детейлинг">Автосервис, детейлинг</button><button type="button" data-v="Фитнес, коворкинг, аренда кабинетов">Фитнес, коворкинг, аренда кабинетов</button><button type="button" data-v="Другое">Другое</button></div></div>
+<div class="qstep" data-k="city"><h2>В каком городе вы работаете?</h2><input class="qin" type="text" id="qcity" placeholder="Например, Нижний Новгород" autocomplete="address-level2"><button type="button" class="btn btn--main qnext">Дальше</button></div>
+<div class="qstep" data-k="goal"><h2>Что хотите получить?</h2>
+<div class="qopts"><button type="button" data-v="Продвижение в Яндекс Картах и 2ГИС">Больше клиентов с Яндекс Карт и 2ГИС</button><button type="button" data-v="Заявки с Авито">Заявки с Авито</button><button type="button" data-v="Сайт и Яндекс Директ">Сайт и Яндекс Директ</button><button type="button" data-v="Не знаю, подскажите">Не знаю, подскажите</button></div></div>
+<div class="qstep" data-k="now"><h2>Как сейчас с клиентами из интернета?</h2>
+<div class="qopts"><button type="button" data-v="Почти нет">Почти нет</button><button type="button" data-v="Есть, но мало">Есть, но мало</button><button type="button" data-v="Есть, но заявка дорогая">Есть, но заявка дорогая</button></div></div>
+<div class="qstep" data-k="contact"><h2>Куда написать ответ?</h2>
+<input class="qin" type="text" id="qname" placeholder="Как вас зовут" autocomplete="name">
+<input class="qin" type="text" id="qcontact" placeholder="Telegram (@ник) или телефон" autocomplete="tel">
+<input type="text" id="qhp" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
+<button type="button" class="btn btn--main" id="qsend">Отправить</button>
+<p class="qnote">Отправляя форму, вы соглашаетесь, что я использую контакт только чтобы ответить вам.</p><p class="qerr" id="qerr"></p></div>
+<div class="qstep qdone" data-k="done"><h2>Готово, заявка у меня</h2><p>Отвечу лично в течение рабочего дня. Пока можно почитать, как я считаю цены:</p><p><a class="btn btn--main" href="/blog/skolko-stoit-prodvizhenie-v-yandeks-kartah/">Сколько стоит продвижение в Картах</a> <a class="btn btn--ghost qghost" href="https://t.me/egornazarovmarketing" data-goal="tg_channel">Канал в Telegram</a></p></div>
+</form>
+<button type="button" class="qback" id="qback" hidden>← Назад</button>
+</section>
 <script>
+(function(){
+var EP="",steps=[].slice.call(document.querySelectorAll(".qstep")),i=0,a={};
+function goal(n){try{ym(107724874,"reachGoal",n)}catch(e){}}
+function show(n){i=n;steps.forEach(function(s,k){s.style.display=k===n?"block":"none"});
+ document.getElementById("qbar").style.width=Math.min(100,Math.round(n/5*100))+"%";
+ document.getElementById("qback").hidden=(n===0||n===steps.length-1);}
+steps.forEach(function(s){s.querySelectorAll(".qopts button").forEach(function(b){b.onclick=function(){a[s.dataset.k]=b.dataset.v;if(i===0)goal("quiz_start");show(i+1)}})});
+document.querySelector(".qnext").onclick=function(){var v=document.getElementById("qcity").value.trim();if(!v){document.getElementById("qcity").focus();return}a.city=v;show(i+1)};
+document.getElementById("qback").onclick=function(){show(Math.max(0,i-1))};
+document.getElementById("qsend").onclick=function(){
+ var n=document.getElementById("qname").value.trim(),c=document.getElementById("qcontact").value.trim(),err=document.getElementById("qerr");
+ if(!c){err.textContent="Оставьте Telegram или телефон, чтобы я мог ответить";return}
+ if(document.getElementById("qhp").value)return;
+ a.name=n;a.contact=c;a.page=document.referrer||"";err.textContent="";
+ var btn=this;btn.disabled=true;btn.textContent="Отправляю…";
+ function ok(){goal("quiz_done");show(steps.length-1)}
+ if(EP){fetch(EP,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(a)}).then(function(r){if(!r.ok)throw 0;ok()}).catch(function(){btn.disabled=false;btn.textContent="Отправить";err.textContent="Не получилось отправить. Напишите мне напрямую: t.me/egornaz"})}
+ else{var t="Заявка с сайта\nНиша: "+a.niche+"\nГород: "+a.city+"\nЗадача: "+a.goal+"\nСейчас: "+a.now+"\nИмя: "+n+"\nКонтакт: "+c;
+  goal("quiz_done");window.location.href="https://t.me/egornaz?text="+encodeURIComponent(t)}
+};
+show(0);window.quizReset=function(){a={};document.getElementById("qform").reset();var b=document.getElementById("qsend");b.disabled=false;b.textContent="Отправить";show(0)};
+})();
+</script>
+</div></div><script>
 (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();
 for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}
 k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
@@ -448,5 +517,36 @@ ym(107724874,'init',{ssr:true,webvisor:true,clickmap:true,referrer:document.refe
 document.addEventListener('click',function(e){var a=e.target.closest('[data-goal]');if(a&&window.ym)ym(107724874,'reachGoal',a.dataset.goal,{page:location.pathname});});
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/107724874" style="position:absolute;left:-9999px" alt=""></div></noscript>
+<script>(function(){
+// квиз в попапе
+var m=document.getElementById("qmodal");
+if(m){
+ function open(e){e&&e.preventDefault();if(window.quizReset)window.quizReset();m.hidden=false;document.body.style.overflow="hidden";try{ym(107724874,"reachGoal","quiz_open")}catch(x){}}
+ function close(){m.hidden=true;document.body.style.overflow=""}
+ document.querySelectorAll('a[data-goal="quiz_open"],a[href="/razbor/"]').forEach(function(a){a.addEventListener("click",open)});
+ document.getElementById("qclose").onclick=close;
+ m.addEventListener("click",function(e){if(e.target===m)close()});
+ document.addEventListener("keydown",function(e){if(e.key==="Escape")close()});
+}
+// прогресс чтения и оглавление
+var bar=document.getElementById("rbar"),toc=document.getElementById("toc");
+if(bar&&toc){
+ var prose=document.querySelector(".prose"),hs=[].slice.call(prose.querySelectorAll("h2")),
+  items=[].slice.call(toc.querySelectorAll("li")),total=+toc.dataset.min,left=document.getElementById("tocleft");
+ function upd(){
+  var r=prose.getBoundingClientRect(),H=window.innerHeight,start=r.top+window.scrollY,end=start+prose.offsetHeight-H*.4;
+  var p=Math.max(0,Math.min(1,(window.scrollY-start+H*.3)/(end-start)));
+  bar.style.width=(p*100)+"%";
+  var rest=Math.max(0,Math.ceil(total*(1-p)));
+  left.textContent=p>=.98?"Вы дочитали до конца":"Осталось читать ~"+rest+" мин";
+  var cur=-1;hs.forEach(function(h,k){if(h.getBoundingClientRect().top<H*.35)cur=k});
+  items.forEach(function(li,k){
+   li.className=k<cur?"is-done":k===cur?"is-cur":k<=cur+3?"is-next":"is-lock";
+  });
+ }
+ window.addEventListener("scroll",upd,{passive:true});window.addEventListener("resize",upd);upd();
+}
+})();
+</script>
 </body>
 </html>
