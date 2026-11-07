@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
 Disallow: /hub.html
+Disallow: /demo-law/
 
 Sitemap: https://nazarovmarketing.ru/sitemap.xml
