@@ -32,7 +32,7 @@ h1 em{font-style:italic;color:var(--green);font-weight:300}
 .lead{margin-top:34px;max-width:520px;font-size:19px;opacity:.78}
 .arch{align-self:end;justify-self:end;width:min(100%,440px);padding:0 14px 0 0;position:relative}
 .arch::before{content:"";position:absolute;inset:14px 0 0 14px;border:1px solid var(--brass);border-radius:999px 999px 0 0;border-bottom:0}
-.arch-img{position:relative;aspect-ratio:3/4;border-radius:999px 999px 0 0;background:url(../assets/step-3.jpg) center/cover no-repeat;margin-right:14px;box-shadow:0 30px 60px -30px rgba(23,32,27,.35)}
+.arch-img{position:relative;aspect-ratio:3/4;border-radius:999px 999px 0 0;background:url(../assets/light-1.jpg) center/cover no-repeat;margin-right:14px;box-shadow:0 30px 60px -30px rgba(23,32,27,.35)}
 .stats{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);margin:0 -5vw;padding:0 5vw}
 .stats div{padding:30px 0 34px;border-right:1px solid var(--line);padding-left:3vw}
 .stats div:first-child{padding-left:0}
@@ -59,7 +59,7 @@ h1 em{font-style:italic;color:var(--green);font-weight:300}
 .green .eyebrow{color:#D8C79B}
 .green .eyebrow::before{background:#D8C79B}
 .split{display:grid;grid-template-columns:.8fr 1.2fr;gap:7vw;align-items:start}
-.ph{aspect-ratio:4/5;background:url(../assets/step-1.jpg) center/cover no-repeat;box-shadow:0 0 0 1px rgba(216,199,155,.45),14px 14px 0 -1px var(--green),14px 14px 0 0 rgba(216,199,155,.6)}
+.ph{aspect-ratio:4/5;background:url(../assets/light-2.jpg) center/cover no-repeat;box-shadow:0 0 0 1px rgba(216,199,155,.45),14px 14px 0 -1px var(--green),14px 14px 0 0 rgba(216,199,155,.6)}
 .green h2{margin-bottom:46px}
 .princ{list-style:none;border-top:1px solid rgba(243,238,226,.25)}
 .princ li{display:grid;grid-template-columns:56px 1fr;gap:16px;padding:28px 0;border-bottom:1px solid rgba(243,238,226,.25)}
@@ -110,8 +110,8 @@ footer{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;paddin
 <section class="hero">
   <div class="hero-text">
     <p class="eyebrow">Юридическая фирма · Нижний Новгород</p>
-    <h1>Решаем сложные юридические задачи <em>для бизнеса</em></h1>
-    <p class="lead">Корпоративное право, споры и налоги для компаний, где ставки высоки и ошибка стоит дорого.</p>
+    <h1>Юридическая защита и сопровождение <em>для вашего бизнеса</em></h1>
+    <p class="lead">Корпоративные вопросы, споры и налоги. Работаем с компаниями, для которых цена ошибки высока.</p>
   </div>
   <div class="arch" aria-hidden="true"><div class="arch-img"></div></div>
   <div class="stats">
@@ -122,23 +122,23 @@ footer{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;paddin
 </section>
 
 <section class="sec" id="about">
-  <div class="head"><p class="eyebrow reveal">О фирме</p><h2 class="reveal">Что мы делаем, для кого и&nbsp;как</h2></div>
+  <div class="head"><p class="eyebrow reveal">О фирме</p><h2 class="reveal">Чем мы занимаемся, для кого и&nbsp;как</h2></div>
   <div class="rows">
-    <div class="row reveal"><span class="rn">I</span><h3>Что</h3><p>Ведём сделки, споры и налоговые вопросы под ключ: от первой консультации до результата в суде или на переговорах.</p></div>
-    <div class="row reveal"><span class="rn">II</span><h3>Для кого</h3><p>Для собственников и руководителей компаний. Физических лиц мы не консультируем, это позволяет оставаться сфокусированными.</p></div>
-    <div class="row reveal"><span class="rn">III</span><h3>Как</h3><p>Небольшая команда. Партнёр лично ведёт каждое дело, а решение предлагается сразу.</p></div>
+    <div class="row reveal"><span class="rn">I</span><h3>Что</h3><p>Сопровождаем сделки, ведём споры и решаем налоговые вопросы. Работаем от первой консультации до результата: в суде или за столом переговоров.</p></div>
+    <div class="row reveal"><span class="rn">II</span><h3>Для кого</h3><p>Для владельцев и руководителей компаний. С частными лицами не работаем: это помогает нам глубже разбираться в вопросах бизнеса.</p></div>
+    <div class="row reveal"><span class="rn">III</span><h3>Как</h3><p>Небольшая команда, в каждом деле лично участвует партнёр. Предлагаем решение сразу, без лишних обходных путей.</p></div>
   </div>
 </section>
 
 <section class="sec tint" id="practice">
   <div class="head"><p class="eyebrow reveal">Практики</p><h2 class="reveal">Направления работы</h2></div>
   <ol class="cards">
-    <li class="reveal"><span class="cn">01</span><h3>Корпоративное право и M&amp;A</h3><p>Сделки, структурирование, корпоративные конфликты.</p></li>
-    <li class="reveal"><span class="cn">02</span><h3>Судебные и арбитражные споры</h3><p>Крупные коммерческие споры, защита активов.</p></li>
-    <li class="reveal"><span class="cn">03</span><h3>Налоговое право</h3><p>Налоговые споры, проверки, сопровождение сделок.</p></li>
-    <li class="reveal"><span class="cn">04</span><h3>Недвижимость и строительство</h3><p>Проекты, сделки, споры по объектам.</p></li>
-    <li class="reveal"><span class="cn">05</span><h3>Банкротство и реструктуризация</h3><p>Защита кредиторов и должников, субсидиарная ответственность.</p></li>
-    <li class="reveal"><span class="cn">06</span><h3>Интеллектуальная собственность</h3><p>Регистрация, защита и распоряжение правами.</p></li>
+    <li class="reveal"><span class="cn">01</span><h3>Корпоративное право и M&amp;A</h3><p>Сделки, структура владения, споры между участниками.</p></li>
+    <li class="reveal"><span class="cn">02</span><h3>Судебные и арбитражные споры</h3><p>Значимые коммерческие споры и защита активов.</p></li>
+    <li class="reveal"><span class="cn">03</span><h3>Налоговое право</h3><p>Проверки, налоговые споры, налоговая сторона сделок.</p></li>
+    <li class="reveal"><span class="cn">04</span><h3>Недвижимость и строительство</h3><p>Сопровождение проектов, сделок и споров по объектам.</p></li>
+    <li class="reveal"><span class="cn">05</span><h3>Банкротство и реструктуризация</h3><p>Интересы кредиторов и должников, субсидиарная ответственность.</p></li>
+    <li class="reveal"><span class="cn">06</span><h3>Интеллектуальная собственность</h3><p>Регистрация, защита и использование прав.</p></li>
   </ol>
 </section>
 
@@ -149,10 +149,10 @@ footer{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;paddin
       <p class="eyebrow reveal">Подход</p>
       <h2 class="reveal">Принципы работы</h2>
       <ul class="princ">
-        <li class="reveal"><span>01</span><div><h3>Партнёр в каждом деле</h3><p>Клиент работает с руководителем проекта, а не с передаточным звеном.</p></div></li>
-        <li class="reveal"><span>02</span><div><h3>Нацелены на результат</h3><p>Объясняем простым языком и предлагаем рабочий путь к результату.</p></div></li>
-        <li class="reveal"><span>03</span><div><h3>Конфиденциальность</h3><p>Информация клиента защищена адвокатской тайной и политикой конфиденциальности.</p></div></li>
-        <li class="reveal"><span>04</span><div><h3>Прозрачные условия</h3><p>Понятные сроки и стоимость до начала работы.</p></div></li>
+        <li class="reveal"><span>01</span><div><h3>Партнёр в каждом деле</h3><p>Вы работаете напрямую с руководителем проекта, без посредников.</p></div></li>
+        <li class="reveal"><span>02</span><div><h3>Нацелены на результат</h3><p>Объясняем без юридического жаргона и сразу предлагаем понятный путь к цели.</p></div></li>
+        <li class="reveal"><span>03</span><div><h3>Конфиденциальность</h3><p>Сведения о клиенте защищены адвокатской тайной и политикой конфиденциальности.</p></div></li>
+        <li class="reveal"><span>04</span><div><h3>Прозрачные условия</h3><p>Сроки и стоимость обсуждаем и фиксируем до начала работы.</p></div></li>
       </ul>
     </div>
   </div>
